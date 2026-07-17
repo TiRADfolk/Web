@@ -44,10 +44,11 @@ const EVENEMENTS_DATA = [
 export default function AgendaPage() {
   const [filtreMois, setFiltreMois] = useState('Tous');
 
+ // Filtre des événements
   const moisDisponibles = ['Tous', 'Janvier', 'Février', 'Mars'];
 
-  const evenementsFiltres = filtreMois === 'Tous' 
-    ? EVENEMENTS_DATA 
+  const evenementsFiltres = filtreMois === 'Tous'
+    ? EVENEMENTS_DATA
     : EVENEMENTS_DATA.filter(evt => evt.mois === filtreMois);
 
   return (
