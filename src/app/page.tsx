@@ -30,7 +30,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 2. SECTION PRÉSENTATION EXPRESS */}
+      {/* 2. SECTION PRÉSENTATION */}
       <section className="max-w-4xl mx-auto py-16 px-6 text-center">
         <h2 className="text-3xl font-serif font-bold text-red-900 mb-6">
           Qui sommes-nous ?
@@ -44,20 +44,55 @@ export default function HomePage() {
       <section id="split-section" className="bg-amber-50/40 border-t border-stone-200 py-16 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           
-          {/* COLONNE GAUCHE : AGENDA CONCIS */}
+          {/* COLONNE GAUCHE : AGENDA CONCIS AMÉLIORÉ */}
           <div className="space-y-8">
             <div>
               <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">Prochaines dates</h2>
               <div className="w-12 h-1 bg-amber-500 rounded mb-6"></div>
             </div>
 
-            <div className="space-y-4">
-              {/* On n'affiche que les 3 premières dates pour rester concis */}
+            <div className="space-y-6">
               {PROCHAINES_DATES.slice(0, 3).map((evt) => (
-                <div key={evt.id} className="border-b border-amber-200 pb-4">
-                  <span className="text-xs font-bold uppercase text-amber-600 block">{evt.date}</span>
-                  <h3 className="text-lg font-bold text-stone-800">{evt.title}</h3>
-                  <p className="text-stone-600 text-sm">{evt.location}</p>
+                <div key={evt.id} className="border-b border-amber-200 pb-5 last:border-none">
+                  {/* Date & Badges */}
+                  <div className="flex flex-wrap items-center gap-2 mb-1">
+                    <span className="text-xs font-bold uppercase text-amber-600">
+                      {evt.date}
+                    </span>
+                    
+                    {/* Badge Public vs Privé (S'adapte à ce que vous mettez dans data.ts) */}
+                    {evt.estPublic ? (
+                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        🌍 Public
+                      </span>
+                    ) : (
+                      <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        🔒 Privé
+                      </span>
+                    )}
+
+                    {/* Badge Gratuit (S'affiche uniquement si mis à 'true' dans data.ts) */}
+                    {evt.estGratuit && (
+                      <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+                        🎁 Gratuit
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Titre & Lieu */}
+                  <h3 className="text-lg font-bold text-stone-800 font-serif">
+                    {evt.title}
+                  </h3>
+                  <p className="text-stone-500 text-xs mb-2">
+                    📍 {evt.location}
+                  </p>
+
+                  {/* Descriptif venant de votre data.ts */}
+                  {evt.description && (
+                    <p className="text-stone-600 text-sm leading-relaxed font-light">
+                      {evt.description}
+                    </p>
+                  )}
                 </div>
               ))}
             </div>
