@@ -16,9 +16,8 @@ export const SITE_INFOS = {
 
   // Design & Visuels configurables
   design: {
-    // Si vous uploadez une image dans le dossier public, mettez son chemin ici (ex: "/images/fond-hero.jpg")
     heroBackgroundImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop", 
-    overlayOpacity: "bg-black/60", // Assombrit l'image pour que le texte reste très lisible
+    overlayOpacity: "bg-black/60", 
   }
 };
 
@@ -32,7 +31,9 @@ export interface EvenementAgenda {
   date: string;
   title: string;
   location: string;
-  // Tableau contenant jusqu'à 3 boutons personnalisés
+  description: string; // <-- Ajouté pour le descriptif
+  estPublic: boolean;  // <-- Ajouté pour le badge Public / Privé
+  estGratuit: boolean; // <-- Ajouté pour le badge Gratuit
   boutons: BoutonAgenda[];
 }
 
@@ -42,6 +43,9 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Octobre",
     title: "La première !!! Répétition Publique",
     location: "Villeneuve d'Ascq - Ferme d'en haut",
+    description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous ! L'occasion idéale pour se rencontrer et échanger.", // Vous pouvez modifier ce texte
+    estPublic: true,  // true = Affichera "🌍 Public"
+    estGratuit: true, // true = Affichera "🎁 Gratuit"
     boutons: [
       { label: "Billetterie", url: "https://www.billetweb.fr/exemple1" },
       { label: "Événement Facebook", url: "https://facebook.com/events/123" },
@@ -53,10 +57,12 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "12 Fév. 2027",
     title: "Bal Folk des Étoiles",
     location: "Nantes (44) — Le Pannonica",
+    description: "Grand bal folk annuel organisé par l'association des Étoiles. Initiation aux danses traditionnelles dès 19h30.",
+    estPublic: true,
+    estGratuit: false, // false = Ne pas afficher le badge Gratuit
     boutons: [
       { label: "Réserver ma place", url: "https://www.billetweb.fr/exemple2" },
       { label: "Infos Pratiques", url: "https://www.google.com/maps" }
-      // Le 3ème bouton est absent, seul 2 boutons s'afficheront pour cette date
     ]
   },
   {
@@ -64,9 +70,11 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "20 Mai 2027",
     title: "Printemps des Parquets",
     location: "Brest (29) — Quartz",
+    description: "Festival de musiques traditionnelles sur grand parquet. T-RAD montera sur scène en deuxième partie de soirée.",
+    estPublic: true,
+    estGratuit: false,
     boutons: [
       { label: "Entrée Libre (Infos)", url: "https://agenda传统.fr" }
-      // Un seul bouton s'affichera ici
     ]
   }
 ];
