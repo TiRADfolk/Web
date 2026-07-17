@@ -1,6 +1,8 @@
 'use client';
 import { useEffect, useState } from 'react';
-import { createClient } from '@/utils/supabase/client';
+
+// CORRIGÉ : On utilise une importation relative standard pour éviter les bugs de alias (@/) sur Vercel
+import { createClient } from '../utils/supabase/client';
 
 export default function ChatRoom({ user }: { user: any }) {
   const supabase = createClient();
