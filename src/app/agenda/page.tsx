@@ -2,7 +2,6 @@
 
 import React, { useState } from 'react';
 
-// Données fictives pour les concerts de l'association TiRAD
 const EVENEMENTS_DATA = [
   { id: 1, titre: 'Concert Traditionnel de Printemps', date: '15 Mars 2026', lieu: 'Salle des Fêtes, Lille', mois: 'Mars', description: 'Un voyage musical à travers les répertoires folkloriques.' },
   { id: 2, titre: 'Rencontre Inter-Asso & Musique', date: '22 Janvier 2026', lieu: 'Maison des Associations, Roubaix', mois: 'Janvier', description: 'Partage, discussions et session acoustique ouverte.' },
@@ -11,11 +10,10 @@ const EVENEMENTS_DATA = [
 
 export default function AgendaPage() {
   const [filtreMois, setFiltreMois] = useState('Tous');
-
   const moisDisponibles = ['Tous', 'Janvier', 'Février', 'Mars'];
 
-  // CORRIGÉ : Plus aucun espace ici
-  const evenementsFiltres = filtreMois === 'Tous'
+  // Nouveau nom de variable pour forcer la mise à jour
+  const listeAffiche = filtreMois === 'Tous'
     ? EVENEMENTS_DATA
     : EVENEMENTS_DATA.filter(evt => evt.mois === filtreMois);
 
@@ -48,10 +46,10 @@ export default function AgendaPage() {
           ))}
         </div>
 
-        {/* Liste des événements */}
+        {/* Liste */}
         <div className="grid gap-8 md:grid-cols-1">
-          {evenementsFiltres.length > 0 ? (
-            evenementsFiltres.map((evt) => (
+          {listeAffiche.length > 0 ? (
+            listeAffiche.map((evt) => (
               <div 
                 key={evt.id} 
                 className="bg-white rounded-xl shadow-md overflow-hidden border border-slate-100 hover:shadow-lg transition-shadow p-6"
