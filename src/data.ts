@@ -2,8 +2,8 @@
 
 export const SITE_INFOS = {
   nom: "T-RAD",
-  slogan: "L'énergie brute du bal traditionnel",
-  descriptionLongue: "T-RAD est un collectif de musiciens passionnés qui fait vibrer les parquets de danse au son des accordéons, violons et flûtes. Notre répertoire mêle compositions originales et airs traditionnels revisités pour une transe collective assurée !",
+  slogan: "La chaleur du Folk, le souffle de la danse",
+  descriptionLongue: "T-RAD inspirés des parquets de bal.préparez vous à voyager entre mélodies envoutantes et rythmiques énergiques!",
   
   // Contacts et réseaux
   emailContact: "tiradfolk@gmail.com",
@@ -39,9 +39,9 @@ export interface EvenementAgenda {
 export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "1",
-    date: "25 Janv. 2027",
-    title: "Grand Fest-Noz",
-    location: "Rennes (35) — Salle de la Cité",
+    date: "Octobre",
+    title: "La première !!! Répétition Publique",
+    location: "Villeneuve d'Ascq - Ferme d'en haut",
     boutons: [
       { label: "Billetterie", url: "https://www.billetweb.fr/exemple1" },
       { label: "Événement Facebook", url: "https://facebook.com/events/123" },
