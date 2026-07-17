@@ -14,13 +14,14 @@ export default function AgendaPage() {
 
   const moisDisponibles = ['Tous', 'Janvier', 'Février', 'Mars'];
 
+  // CORRIGÉ : Plus aucun espace ici
   const evenementsFiltres = filtreMois === 'Tous'
     ? EVENEMENTS_DATA
     : EVENEMENTS_DATA.filter(evt => evt.mois === filtreMois);
 
   return (
-    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen bg-stone-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-extrabold text-slate-900 sm:text-5xl">
             Notre Agenda
