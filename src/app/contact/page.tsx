@@ -1,135 +1,66 @@
-'use client';
-import { useState } from 'react';
+// src/app/contact/page.tsx
+import { SITE_INFOS } from '../../data';
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
-  });
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus('loading');
-
-    // Simulation d'envoi (sera lié à votre API de messagerie)
-    setTimeout(() => {
-      setStatus('success');
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1500);
-  };
-
   return (
-    <div className="bg-stone-50 min-h-screen py-12 px-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="bg-stone-50 min-h-screen text-stone-900 py-20 px-6">
+      <div className="max-w-4xl mx-auto text-center">
+        <h1 className="text-4xl font-serif font-bold text-red-900 mb-4">
+          Contact & Réservations
+        </h1>
+        <div className="w-16 h-1 bg-amber-500 mx-auto mb-8 rounded"></div>
         
-        {/* En-tête */}
-        <div className="text-center mb-12">
-          <span className="text-amber-600 font-bold uppercase tracking-widest text-sm">Booking & Questions</span>
-          <h1 className="text-4xl md:text-5xl font-serif font-black text-red-950 mt-2">Contactez T-RAD</h1>
-          <div className="h-1 w-20 bg-amber-500 mx-auto mt-4 rounded"></div>
-        </div>
+        <p className="text-lg text-stone-600 max-w-xl mx-auto mb-12">
+          Vous souhaitez programmer le collectif **{SITE_INFOS.nom}** pour un festival, un fest-noz, un bal ou un événement privé ? 
+          Discutons ensemble de votre projet.
+        </p>
+        
+        {/* Encadré de contact direct */}
+        <div className="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-stone-100 max-w-2xl mx-auto mb-12">
+          <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-3">
+            Nous écrire par email
+          </p>
+          <a 
+            href={`mailto:${SITE_INFOS.emailContact}`}
+            className="text-2xl md:text-3xl font-bold text-red-950 hover:text-amber-600 transition-colors break-all inline-block mb-6"
+          >
+            {SITE_INFOS.emailContact}
+          </a>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {/* Informations de contact (Gauche) */}
-          <div className="bg-gradient-to-br from-red-950 to-red-900 text-white p-8 rounded-2xl shadow-sm flex flex-col justify-between space-y-6">
-            <div>
-              <h2 className="text-2xl font-serif font-bold text-amber-400 mb-4">Le Collectif</h2>
-              <p className="text-stone-200 text-sm leading-relaxed">
-                Vous souhaitez programmer T-RAD pour un festival, un bal folk, un mariage ou une initiation à la danse ? Écrivez-nous !
+          {SITE_INFOS.telephone && (
+            <div className="border-t border-stone-100 pt-6 mt-2">
+              <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-2">
+                Nous contacter par téléphone
+              </p>
+              <p className="text-xl font-semibold text-stone-800">
+                {SITE_INFOS.telephone}
               </p>
             </div>
-
-            <div className="space-y-4 text-sm">
-              <div className="flex items-center space-x-3">
-                <span>📧</span>
-                <span className="text-stone-100">contact@t-rad-music.fr</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span>📞</span>
-                <span className="text-stone-100">06 12 34 56 78</span>
-              </div>
-              <div className="flex items-center space-x-3">
-                <span>📍</span>
-                <span className="text-stone-100">Bretagne / Grand Ouest</span>
-              </div>
-            </div>
-
-            <div className="pt-4 border-t border-red-800 text-xs text-amber-300">
-              Suivez nos aventures sur les réseaux sociaux !
-            </div>
-          </div>
-
-          {/* Formulaire de contact (Droite) */}
-          <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100 md:col-span-2">
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="block text-sm font-semibold text-stone-700 mb-1">Nom / Structure</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 bg-stone-50"
-                  placeholder="Ex: Association Folklorique"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-stone-700 mb-1">Adresse Email</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full px-4 py-2 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 bg-stone-50"
-                  placeholder="exemple@domaine.fr"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-stone-700 mb-1">Objet</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.subject}
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                  className="w-full px-4 py-2 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 bg-stone-50"
-                  placeholder="Ex: Demande de devis concert"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-stone-700 mb-1">Votre message</label>
-                <textarea
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-2 border border-stone-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-900 bg-stone-50 resize-none"
-                  placeholder="Détaillez votre projet ou votre question ici..."
-                ></textarea>
-              </div>
-
-              <button
-                type="submit"
-                disabled={status === 'loading'}
-                className="w-full bg-amber-600 text-white font-bold py-3 rounded-lg hover:bg-amber-700 transition shadow-md disabled:bg-stone-300"
-              >
-                {status === 'loading' ? 'Envoi en cours...' : 'Envoyer le message'}
-              </button>
-
-              {status === 'success' && (
-                <div className="p-4 bg-green-50 text-green-800 text-sm rounded-lg text-center font-medium border border-green-200">
-                  ✨ Message envoyé avec succès ! Le collectif vous répondra rapidement.
-                </div>
-              )}
-            </form>
-          </div>
+          )}
         </div>
 
+        {/* Réseaux Sociaux */}
+        <div className="max-w-md mx-auto">
+          <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-4">
+            Retrouvez-nous sur les réseaux
+          </p>
+          <div className="flex justify-center items-center gap-8">
+            {SITE_INFOS.reseauxSociaux.map((res, idx) => (
+              <a 
+                key={idx}
+                href={res.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-1 text-stone-600 hover:text-amber-600 font-medium transition-colors"
+              >
+                <span className="text-2xl bg-stone-100 p-3 rounded-full hover:bg-amber-50 transition-colors">
+                  {res.icone}
+                </span>
+                <span className="text-sm">{res.nom}</span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
