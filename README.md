@@ -2,7 +2,7 @@
 Web pour VERCEL
 # T-RAD - Site Officiel du Groupe de Bal Traditionnel
 
-Ce projet est le site web complet, moderne et administrable du groupe de musique traditionnelle **T-RAD** (prononcé "Ti-RAD"). Développé avec **Next.js 14+ (App Router)**, **Tailwind CSS** et **Supabase**, il est conçu pour être déployé instantanément sur **Vercel**.
+Ce projet est le site web complet, moderne et administrable du groupe de musique traditionnelle **T-RAD** (prononcé "Ti-RAD"). Développé avec **Next.js 14+ (App Router)** et **Tailwind CSS**, il est conçu pour être déployé instantanément et fonctionner gratuitement sur **Vercel** grâce à une architecture statique ultra-optimisée.
 
 ---
 
@@ -16,13 +16,10 @@ Le site utilise une charte graphique chaleureuse inspirée des parquets de bals 
 
 ## 📂 Structure des Pages Créées
 
-1. **Accueil (`/`) :** Section d'introduction percutante, présentation express du collectif et mise en avant des deux prochaines dates majeures.
-2. **Présentation (`/presentation`) :** Récit des origines du groupe et fiches descriptives des musiciens (instruments et biographie).
-3. **Agenda (`/agenda`) :** Système de cartes moderne affichant les concerts par ordre chronologique avec un filtrage interactif par mois, liens de billetterie et événements Facebook.
-4. **Médias (`/media`) :** Interface à onglets dynamique permettant de naviguer facilement entre les vidéos live, les extraits audio (lecteur) et les galeries photos.
-5. **Contact (`/contact`) :** Formulaire de réservation de date et de contact avec un design épuré, accompagné des coordonnées du collectif.
-6. **Connexion (`/login`) :** Page sécurisée dédiée à l'équipe interne pour s'authentifier.
-7. **Espace Message (`src/components/ChatRoom.tsx`) :** Module de discussion interne simplifié et direct, débarrassé des fonctionnalités superflues.
+1. **Accueil (`/`) :** Section d'introduction percutante, présentation express du collectif et mise en avant des prochaines dates majeures (fond d'écran configurable).
+2. **Présentation (`/presentation`) :** Récit des origines du groupe et fiches descriptives des musiciens (trombinoscope avec rôles, descriptions et photos).
+3. **Agenda (`/agenda`) :** Système de cartes moderne affichant les concerts par ordre chronologique avec un filtrage interactif par mois exécuté côté client, liens de billetterie et badges (Public/Privé, Gratuit).
+4. **Contact (`/`) :** Pavé de contact direct intégré avec liens mail interactifs et liens vers les réseaux sociaux officiels.
 
 ---
 
@@ -32,15 +29,32 @@ Le projet ayant été entièrement configuré depuis l'interface web de GitHub, 
 
 1. Connectez-vous sur [Vercel](https://vercel.com) à l'aide de votre compte **GitHub**.
 2. Cliquez sur le bouton **Add New...** puis sélectionnez **Project**.
-3. Repérez votre dépôt `t-rad-site` (ou le nom donné à votre repository) et cliquez sur **Import**.
-4. Déroulez l'onglet **Environment Variables** (Variables d'environnement) et ajoutez vos clés de liaison Supabase récupérées sur votre tableau de bord Supabase (*Settings > API*) :
-   * **Nom :** `NEXT_PUBLIC_SUPABASE_URL` | **Valeur :** `https://votre-id-projet.supabase.co`
-   * **Nom :** `NEXT_PUBLIC_SUPABASE_ANON_KEY` | **Valeur :** `votre-cle-publique-anonyme`
-5. Cliquez sur **Deploy**.
+3. Repérez votre dépôt GitHub et cliquez sur **Import**.
+4. Laissez les configurations par défaut et cliquez sur **Deploy**.
 
 Le site est en ligne !
 
 ---
 
-## 🔄 Mise à jour du contenu
-Toutes les modifications futures de l'interface ou des textes statiques peuvent se faire directement en modifiant les fichiers `.tsx` cibles sur GitHub à l'aide de l'icône **Crayon**. À chaque validation de modification (*Commit*), Vercel reconstruit et met à jour le site public automatiquement en moins de 6
+## 🔄 Mise à jour du contenu (Guide d'administration)
+
+Pour éviter de toucher au code structurel des pages et conserver une consommation de ressources à 0 % sur Vercel, toutes les informations du groupe sont centralisées dans un seul et unique fichier.
+
+### 1. Modifier les textes, l'agenda et le Trombinoscope
+Ouvrez le fichier **`src/data.ts`** sur votre éditeur (ou directement sur GitHub avec l'icône **Crayon**) :
+* **Sauts de ligne :** Pour les descriptions et l'histoire du groupe, utilisez les backticks (\` \` \`) pour passer à la ligne librement avec la touche *Entrée*.
+* **Ajouter un concert :** Copiez un bloc dans le tableau `PROCHAINES_DATES`, modifiez les textes et attribuez-lui un `id` unique (`"1"`, `"2"`, `"3"`...).
+* **Activer/Désactiver le fond d'écran :** Dans le bloc `design`, laissez `heroBackgroundImage: ""` vide pour afficher un dégradé uni ultra-léger, ou insérez le lien d'une image pour l'afficher en fond d'écran.
+
+### 2. Intégrer des Photos (Trombinoscope)
+* **Méthode Locale (Recommandée) :** Passez vos photos sur **Squoosh.app** (largeur max 400px, format `.webp`). Déposez le fichier dans le dossier `public/images/` sur GitHub, puis écrivez le chemin dans `data.ts` (ex: `photoUrl: "/images/luc.webp"`).
+* **Méthode Google Drive :** Configurez le partage de votre fichier Drive en "Public". Copiez le lien et convertissez-le avec un outil en ligne comme *unidownloader.com/google-drive-direct-link-generator*. Collez le lien direct obtenu dans `data.ts`.
+
+### 3. Diffuser les modifications en ligne
+Pour économiser vos quotas, le site utilise un système de déploiement manuel :
+1. Faites vos modifications et envoyez uniquement le fichier de données sur GitHub (`git add src/data.ts`, `git commit`, `git push`).
+2. Connectez-vous sur votre tableau de bord **Vercel**, puis allez dans l'onglet **Deployments**.
+3. Sur la **toute première ligne** de la liste (votre dernier envoi), cliquez sur les **trois petits points `...`** tout à droite.
+4. Sélectionnez **Redeploy** et validez. 
+
+En moins de 60 secondes, la pastille passe au vert et vos modifications sont visibles par le public !
