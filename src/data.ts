@@ -1,4 +1,4 @@
-// src/data.ts
+// src/data.ts 
 
 export const SITE_INFOS = {
   nom: "T-RAD",
