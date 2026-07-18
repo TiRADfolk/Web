@@ -10,7 +10,7 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
   
   // Contacts et réseaux
   emailContact: "tiradfolk@gmail.com",
-  telephone: "06 00 00 00 00", // Laissez vide "" si vous ne voulez pas l'afficher
+  telephone: "", // Laissez vide "" si vous ne voulez pas l'afficher
   reseauxSociaux: [
     { nom: "Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
     { nom: "Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
@@ -21,7 +21,7 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
   presentationTitre: "Qui sommes-nous ?",
   presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk alliée à la douceur des musiques traditionnelles.
 
-Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre compositions originales et airs traditionnels revisités. 
+Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités. 
 
 Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
 
@@ -64,23 +64,23 @@ export interface MembreTrombi {
 export const TROMBINOSCOPE: MembreTrombi[] = [
   {
     id: "m1",
-    nom: "Nom du Premier Membre",
-    role: "Accordéon diatonique",
-    description: "Passionné par les rythmiques de bourrées et les mélodies traditionnelles.",
+    nom: "Naomi",
+    role: "Flûte traversière, Toy-Piano et Chant",
+    description: "Musicienne accomplie et bourrée de talent. Elle vous enchantera de ses mélodies .",
     photoUrl: "/images/trombi-membre1.webp" // 💡 Mettez le fichier .webp dans public/images/
   },
   {
     id: "m2",
-    nom: "Nom du Deuxième Membre",
-    role: "Violon",
-    description: "Fait vibrer les cordes pour guider les pas des danseurs sur le parquet.",
+    nom: "Florian",
+    role: "Viole de Gambe et Percussions",
+    description: "Un maitre dans le BaROCK et la navigation entre les styles.",
     photoUrl: "/images/trombi-membre2.webp"
   },
   {
     id: "m3",
-    nom: "Nom du Troisième Membre",
+    nom: "Antoine",
     role: "Guitare / Bouzouki",
-    description: "Apporte l'énergie et la couleur harmonique indispensable au collectif.",
+    description: "Apporte la rythmique dansante et l'énergie.",
     photoUrl: "/images/trombi-membre3.webp"
   }
 ];
