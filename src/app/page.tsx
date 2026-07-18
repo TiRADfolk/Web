@@ -3,15 +3,24 @@ import Link from 'next/link';
 import { SITE_INFOS, PROCHAINES_DATES } from '../data';
 
 export default function HomePage() {
+  // On vérifie si une image de fond est configurée
+  const aUneImageDeFond = SITE_INFOS.design.heroBackgroundImage && SITE_INFOS.design.heroBackgroundImage.trim() !== "";
+
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
       
-      {/* 1. SECTION HERO */}
+      {/* 1. SECTION HERO (DYNAMIQUE : IMAGE OU FOND UNI) */}
       <section 
-        className="relative py-32 text-center px-4 bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-[60vh]"
-        style={{ backgroundImage: `url('${SITE_INFOS.design.heroBackgroundImage}')` }}
+        className={`relative py-32 text-center px-4 bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-[60vh] ${
+          !aUneImageDeFond ? 'bg-gradient-to-br from-amber-900 to-stone-900' : ''
+        }`}
+        style={aUneImageDeFond ? { backgroundImage: `url('${SITE_INFOS.design.heroBackgroundImage}')` } : {}}
       >
-        <div className={`absolute inset-0 ${SITE_INFOS.design.overlayOpacity}`}></div>
+        {/* L'overlay d'assombrissement ne s'affiche que s'il y a une image de fond */}
+        {aUneImageDeFond && (
+          <div className={`absolute inset-0 ${SITE_INFOS.design.overlayOpacity}`}></div>
+        )}
+        
         <div className="relative z-10 max-w-3xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-serif font-extrabold text-amber-400 mb-4 drop-shadow-lg tracking-wide">
             {SITE_INFOS.nom}
@@ -60,7 +69,6 @@ export default function HomePage() {
                       {evt.date}
                     </span>
                     
-                    {/* Badge Public vs Privé (S'adapte à ce que vous mettez dans data.ts) */}
                     {evt.estPublic ? (
                       <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
                         🌍 Public
@@ -71,7 +79,6 @@ export default function HomePage() {
                       </span>
                     )}
 
-                    {/* Badge Gratuit (S'affiche uniquement si mis à 'true' dans data.ts) */}
                     {evt.estGratuit && (
                       <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
                         🎁 Gratuit
@@ -87,7 +94,7 @@ export default function HomePage() {
                     📍 {evt.location}
                   </p>
 
-                  {/* Descriptif venant de votre data.ts */}
+                  {/* Descriptif */}
                   {evt.description && (
                     <p className="text-stone-600 text-sm leading-relaxed font-light">
                       {evt.description}
