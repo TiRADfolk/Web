@@ -14,9 +14,9 @@ export const SITE_INFOS = {
     { nom: "YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
   ],
 
-  // Design & Visuels configurables
+  // Design & Visuels configurables convertir les images en format WEBP dans squoosh
   design: {
-    heroBackgroundImage: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?q=80&w=1974&auto=format&fit=crop", 
+    heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
   }
 };
