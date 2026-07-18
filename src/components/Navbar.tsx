@@ -1,5 +1,6 @@
-'use client';
-import { useState } from 'react';
+'use client'; 
+
+import React, { useState } from 'react';
 import Link from 'next/link';
 
 export default function Navbar() {
@@ -11,7 +12,7 @@ export default function Navbar() {
     { href: '/agenda', label: 'Agenda' },
     { href: '/media', label: 'Médias' },
     { href: '/contact', label: 'Contact' },
-      ];
+  ];
 
   return (
     <nav className="bg-amber-900 text-stone-100 shadow-md sticky top-0 z-50">
@@ -28,7 +29,8 @@ export default function Navbar() {
           ))}
         </div>
 
-        <button onClick={() => setIsOpen(!isOpen)} class="md:hidden text-amber-400 focus:outline-none">
+        {/* Correction ici : class est devenu className */}
+        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-amber-400 focus:outline-none">
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
