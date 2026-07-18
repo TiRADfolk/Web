@@ -12,9 +12,9 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
   emailContact: "tiradfolk@gmail.com",
   telephone: "", // Laissez vide "" si vous ne voulez pas l'afficher
   reseauxSociaux: [
-    { nom: "Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
-    { nom: "Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
-    { nom: "YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
+    { nom: "Bientôt Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
+    { nom: "Bientôt Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
+    { nom: "Bientôt YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
   ],
 
   // Textes modifiables pour la page /presentation
