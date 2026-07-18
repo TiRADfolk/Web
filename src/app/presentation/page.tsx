@@ -1,56 +1,83 @@
-import Image from 'next/image';
+// src/app/presentation/page.tsx
+import React from 'react';
+import { SITE_INFOS, TROMBINOSCOPE } from '../../data';
 
 export default function PresentationPage() {
-  const musiciens = [
-    { name: 'Loïc', instrument: 'Accordéon Diatonique', bio: 'Maître du soufflet et des rythmes impairs.' },
-    { name: 'Enora', instrument: 'Violon & Chant', bio: 'Apporte la douceur des mélodies et l\'énergie du phrasé.' },
-    { name: 'Yann', instrument: 'Flûtes & Bombarde', bio: 'Le souffle sauvage qui fait vibrer le parquet.' },
-  ];
-
   return (
-    <div className="bg-stone-50 min-h-screen">
-      {/* Hero Section Présentation */}
-      <section className="bg-red-950 text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">L'Histoire de T-RAD</h1>
-          <p className="text-xl text-amber-200 italic">"Une transe acoustique née au cœur des fest-noz."</p>
-        </div>
-      </section>
-
-      {/* Texte Histoire */}
-      <section className="py-16 px-4 max-w-4xl mx-auto">
-        <div className="prose prose-stone lg:prose-xl">
-          <h2 className="text-3xl font-serif font-bold text-red-900 mb-6">D'où venons-nous ?</h2>
-          <p className="text-stone-700 leading-relaxed mb-6">
-            T-RAD (prononcé "Ti-RAD") est né de la rencontre de trois musiciens passionnés par les musiques à danser. 
-            Ancré dans la tradition bretonne, le groupe explore des sonorités modernes pour créer une musique 
-            puissante, hypnotique et résolument festive.
+    <div className="min-h-screen bg-stone-50 py-12 px-4 sm:px-6 lg:px-8 text-stone-900">
+      <div className="max-w-5xl mx-auto space-y-16">
+        
+        {/* --- SECTION 1 : HISTOIRE DU GROUPE --- */}
+        <section className="bg-white p-8 md:p-12 rounded-2xl shadow-sm border border-stone-100">
+          <h1 className="text-4xl font-serif font-extrabold text-red-900 mb-8 border-b border-amber-200 pb-4 text-center">
+            {SITE_INFOS.presentationTitre || "Présentation"}
+          </h1>
+          
+          {/* Le texte respecte les sauts de ligne du data.ts grâce à whitespace-pre-line */}
+          <p className="text-lg text-stone-700 leading-relaxed font-light whitespace-pre-line">
+            {SITE_INFOS.presentationTexte}
           </p>
-          <p className="text-stone-700 leading-relaxed">
-            Notre répertoire est un voyage entre compositions originales et airs traditionnels revisités, 
-            toujours avec un seul objectif : faire vibrer la terre sous les pas des danseurs.
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* Section Musiciens */}
-      <section className="bg-amber-50 py-16 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-serif font-bold text-center text-red-900 mb-12">Le Collectif</h2>
-          <div className="grid gap-8 md:grid-cols-3">
-            {musiciens.map((m) => (
-              <div key={m.name} className="bg-white p-8 rounded-2xl shadow-sm border border-amber-100 text-center hover:scale-105 transition duration-300">
-                <div className="w-24 h-24 bg-red-900 rounded-full mx-auto mb-6 flex items-center justify-center text-white text-2xl font-bold">
-                  {m.name[0]}
-                </div>
-                <h3 className="text-2xl font-serif font-bold text-stone-900">{m.name}</h3>
-                <p className="text-amber-600 font-medium mb-4">{m.instrument}</p>
-                <p className="text-stone-600 text-sm">{m.bio}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* --- SECTION 2 : LE TROMBINOSCOPE (LES MUSICIENS) --- */}
+        {TROMBINOSCOPE && TROMBINOSCOPE.length > 0 && (
+          <section className="space-y-10">
+            <div className="text-center">
+              <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">Le Collectif</h2>
+              <div className="w-16 h-1 bg-amber-500 rounded mx-auto"></div>
+              <p className="mt-4 text-stone-500 italic">"La chaleur du Folk, le souffle de la danse"</p>
+            </div>
+
+            {/* Grille des membres : 1 colonne sur mobile, 2 sur tablette, 3 sur ordi */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {TROMBINOSCOPE.map((membre) => {
+                const aUnePhoto = membre.photoUrl && membre.photoUrl.trim() !== "";
+                
+                return (
+                  <div 
+                    key={membre.id} 
+                    className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col hover:shadow-md transition-all group"
+                  >
+                    {/* Zone Image */}
+                    <div className="w-full h-72 bg-stone-200 relative flex items-center justify-center overflow-hidden">
+                      {aUnePhoto ? (
+                        <img 
+                          src={membre.photoUrl} 
+                          alt={membre.nom}
+                          loading="lazy" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      ) : (
+                        <div className="text-center">
+                          <span className="text-5xl block mb-2">🎻</span>
+                          <span className="text-xs font-bold uppercase tracking-widest text-stone-400">Photo à venir</span>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Infos Membre */}
+                    <div className="p-6 flex-1 flex flex-col text-center">
+                      <h3 className="text-xl font-serif font-bold text-stone-900 mb-1">
+                        {membre.nom}
+                      </h3>
+                      <p className="text-sm font-bold text-amber-600 uppercase tracking-widest mb-4">
+                        {membre.role}
+                      </p>
+                      
+                      {membre.description && (
+                        <p className="text-stone-600 text-sm font-light leading-relaxed italic border-t border-stone-50 pt-4">
+                          "{membre.description}"
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+      </div>
     </div>
   );
 }
