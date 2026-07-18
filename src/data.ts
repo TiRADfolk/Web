@@ -3,11 +3,11 @@
 export const SITE_INFOS = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
-  descriptionLongue: "T-RAD inspirés des parquets de bal.préparez vous à voyager entre mélodies envoutantes et rythmiques énergiques!",
+  descriptionLongue: "T-RAD (prononcez Ti RAD) inspirés des parquets de bal.préparez vous à voyager entre mélodies envoutantes et rythmiques énergiques!",
   
   // Contacts et réseaux
   emailContact: "tiradfolk@gmail.com",
-  telephone: "06 00 00 00 00", // Optionnel, laissez vide "" si vous ne voulez pas l'afficher
+  telephone: "", // Optionnel, laissez vide "" si vous ne voulez pas l'afficher
   reseauxSociaux: [
     { nom: "Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
     { nom: "Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
@@ -54,10 +54,10 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   },
   {
     id: "2",
-    date: "12 Fév. 2027",
-    title: "Bal Folk des Étoiles",
-    location: "Nantes (44) — Le Pannonica",
-    description: "Grand bal folk annuel organisé par l'association des Étoiles. Initiation aux danses traditionnelles dès 19h30.",
+    date: "Novembre",
+    title: "Grand Bal Folk des Compagnons du Devoir",
+    location: "Villeneuve d'Ascq (59)",
+    description: "Grand bal folk annuel organisé par les compagnons. ",
     estPublic: true,
     estGratuit: false, // false = Ne pas afficher le badge Gratuit
     boutons: [
@@ -67,14 +67,14 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   },
   {
     id: "3",
-    date: "20 Mai 2027",
-    title: "Printemps des Parquets",
-    location: "Brest (29) — Quartz",
-    description: "Festival de musiques traditionnelles sur grand parquet. T-RAD montera sur scène en deuxième partie de soirée.",
+    date: "Décembre",
+    title: "MoederBal du dimanche",
+    location: "Halluin (59)",
+    description: "4 fois par an le MoederBal invite 3 groupes pour animer un dimanche après-midi de danse.",
     estPublic: true,
     estGratuit: false,
     boutons: [
-      { label: "Entrée Libre (Infos)", url: "https://agenda传统.fr" }
+      { label: "(Infos)", url: "https://r.search.yahoo.com/_ylt=Awr.rH3xDFtqRQIAgG0k24lQ;_ylu=Y29sbwNpcjIEcG9zAzEEdnRpZAMEc2VjA3Ny/RV=2/RE=1785561585/RO=10/RU=https%3a%2f%2fwww.facebook.com%2fmoederbal.bal%2f/RK=2/RS=N2oV54aXhu7k9EDC6uV8v_08BxA-" }
     ]
   }
 ];
