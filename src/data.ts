@@ -67,21 +67,21 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
     nom: "Naomi",
     role: "Flûte traversière, Toy-Piano et Chant",
     description: "Musicienne accomplie et bourrée de talent. Elle vous enchantera de ses mélodies .",
-    photoUrl: "https://drive.google.com/uc?export=download&id=1682JkRyU7jztD8Z8-Q-ee52ovm2fh9aW" // 💡 Mettez le fichier .webp dans public/images/
+    photoUrl: "https://drive.google.com/thumbnail?id=1682JkRyU7jztD8Z8-Q-ee52ovm2fh9aW&sz=w1000W" // 💡 Mettez le fichier .webp dans public/images/
   },
   {
     id: "m2",
     nom: "Florian",
     role: "Viole de Gambe et Percussions",
     description: "Un maitre dans le BaROCK et la navigation entre les styles.",
-    photoUrl: "https://drive.google.com/uc?export=download&id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k"
+    photoUrl: "https://drive.google.com/thumbnail?id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k&sz=w1000"
   },
   {
     id: "m3",
     nom: "Antoine",
     role: "Guitare / Bouzouki",
     description: "Apporte la rythmique dansante et l'énergie.",
-    photoUrl: "https://drive.google.com/uc?export=download&id=1Hbe-68uYKp0RW3kP37p7Dzss5LpM8WX_"
+    photoUrl: "https://drive.google.com/thumbnail?id=1rp_xdnf6jccJHp5Y9fiUu0Cmvbx4l1mE&sz=w1000"
   }
 ];
 
