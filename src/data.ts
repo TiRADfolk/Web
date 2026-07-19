@@ -1,4 +1,4 @@
-// --- DÉFINITION DES INTERFACES (POUR TYPESCRIPT) ---
+// ---  DÉFINITION DES INTERFACES (POUR TYPESCRIPT) ---
 export interface SiteDesign {
   heroBackgroundImage: string;
   overlayOpacity: string;
