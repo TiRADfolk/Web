@@ -74,7 +74,7 @@ export const SITE_INFOS: SiteInfos = {
   descriptionLongue: `T-RAD (prononcez Ti RAD) 
 Né il y a à peine un semestre, T-RAD rassemble des musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés. 
 
-Ce qui nous unite ? 
+Ce qui nous unit ? 
 L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.`,
   emailContact: "tiradfolk@gmail.com",
   telephone: "",
