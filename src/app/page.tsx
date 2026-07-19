@@ -1,88 +1,141 @@
 import Link from 'next/link';
-import { SITE_INFOS, PROCHAINES_DATES } from '../data';
+import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO } from '../data';
 
 export default function HomePage() {
   const aUneImageDeFond =
     SITE_INFOS.design.heroBackgroundImage &&
     SITE_INFOS.design.heroBackgroundImage.trim() !== "";
 
+  // Fonction pour traiter l'affichage dynamique des tarifs
+  const renderBadgeTarif = (tarif: boolean | string) => {
+    if (tarif === "non" || tarif === false) {
+      return (
+        <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+          🎁 Gratuit
+        </span>
+      );
+    }
+    if (tarif === "oui" || tarif === true) {
+      return (
+        <span className="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+          🎟️ €
+        </span>
+      );
+    }
+    // Si c'est un texte personnalisé (ex: "6-8€")
+    return (
+      <span className="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
+        🎟️ {tarif}
+      </span>
+    );
+  };
+
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
 
-      {/* HERO */}
+      {/* HERO BANDEAU OPTIMISÉ & RÉDUIT */}
       <section
-        className={`relative py-12 text-center px-4 bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-[35vh] ${
-          !aUneImageDeFond
-            ? 'bg-gradient-to-br from-amber-900 to-stone-900'
-            : ''
+        className={`relative py-8 text-center px-4 bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-[25vh] ${
+          !aUneImageDeFond ? 'bg-gradient-to-br from-amber-900 to-stone-900' : ''
         }`}
-        style={
-          aUneImageDeFond
-            ? { backgroundImage: `url('${SITE_INFOS.design.heroBackgroundImage}')` }
-            : {}
-        }
+        style={aUneImageDeFond ? { backgroundImage: `url('${SITE_INFOS.design.heroBackgroundImage}')` } : {}}
       >
         {aUneImageDeFond && (
           <div className={`absolute inset-0 ${SITE_INFOS.design.overlayOpacity}`} />
         )}
 
-        <div className="relative z-10 max-w-5xl mx-auto">
+        <div className="relative z-10 max-w-5xl mx-auto flex flex-col items-center">
 
-          {/* LOGO + NOM */}
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-6">
-            
-            {/* Affichage du logo uniquement s'il est renseigné */}
+          {/* LOGO AGRANDI DE 20% + NOM */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 mb-4">
             {SITE_INFOS.logo && (
               <img
                 src={SITE_INFOS.logo}
                 alt={`Logo ${SITE_INFOS.nom}`}
-                className="w-28 h-28 md:w-32 md:h-32 object-cover rounded-xl shadow-xl border-2 border-amber-400"
+                className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-xl shadow-xl border-2 border-amber-400"
               />
             )}
 
-            <div>
+            <div className="text-center md:text-left">
               <h1 className="text-4xl md:text-6xl font-serif font-extrabold text-amber-400 tracking-wide drop-shadow-lg">
                 {SITE_INFOS.nom}
               </h1>
-
               {SITE_INFOS.slogan && (
-                <p className="text-lg md:text-xl text-stone-100 italic mt-3 drop-shadow">
+                <p className="text-lg md:text-xl text-stone-100 italic mt-2 drop-shadow">
                   {SITE_INFOS.slogan}
                 </p>
               )}
             </div>
           </div>
 
-          {/* MENU */}
-          <nav className="flex flex-wrap justify-center gap-3 mb-8">
+          {/* NAVIGATION UNIQUE SUR LA MÊME LIGNE */}
+          <nav className="flex flex-wrap justify-center items-center gap-3">
             <Link
               href="/presentation"
-              className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition"
+              className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium"
             >
               Présentation
             </Link>
             <Link
+              href="/activites"
+              className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium"
+            >
+              Activités
+            </Link>
+            <Link
               href="/agenda"
-              className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition"
+              className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium"
             >
               Agenda
             </Link>
+            {SITE_INFOS.lienMedia && (
+              <a
+                href={SITE_INFOS.lienMedia}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-amber-500 text-amber-950 px-5 py-2 rounded-full hover:bg-amber-400 transition text-sm font-bold shadow-md"
+              >
+                🎬 Médias
+              </a>
+            )}
           </nav>
-
-          {/* BOUTON PRINCIPAL */}
-          <Link
-            href="/agenda"
-            className="bg-amber-500 text-amber-950 px-8 py-3 rounded-full font-bold shadow-xl hover:bg-amber-400 transition-all hover:scale-105 inline-block"
-          >
-            Voir les prochaines dates
-          </Link>
 
         </div>
       </section>
 
+      {/* SECTION NEWS CONDITIONNELLE */}
+      {NEWS_INFO.afficherSurAccueil && (
+        <section className="max-w-4xl mx-auto mt-12 p-6 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm">
+          <div className="flex flex-col md:flex-row gap-6 items-center">
+            {NEWS_INFO.image && (
+              <img 
+                src={NEWS_INFO.image} 
+                alt={NEWS_INFO.titre} 
+                className="w-full md:w-48 h-32 object-cover rounded-xl shadow-md"
+              />
+            )}
+            <div className="flex-1 text-center md:text-left">
+              <span className="bg-red-700 text-white text-xs uppercase font-extrabold px-2.5 py-1 rounded-md">News</span>
+              <h2 className="text-2xl font-serif font-bold text-red-900 mt-2 mb-2">{NEWS_INFO.titre}</h2>
+              <p className="text-stone-700 text-base mb-4">{NEWS_INFO.description}</p>
+              {NEWS_INFO.lien && (
+                <a 
+                  href={NEWS_INFO.lien} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block text-sm font-bold text-amber-700 hover:underline"
+                >
+                  En savoir plus →
+                </a>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* PRESENTATION */}
-      <section className="max-w-4xl mx-auto py-16 px-6 text-center">
-        <h2 className="text-3xl font-serif font-bold text-red-900 mb-6">
+      <section className="max-w-4xl mx-auto py-12 px-6 text-center">
+        <h2 className="text-3xl font-serif font-bold text-red-900 mb-4">
           Qui sommes-nous ?
         </h2>
         <p className="text-lg text-stone-700 leading-relaxed">
@@ -91,110 +144,62 @@ export default function HomePage() {
       </section>
 
       {/* AGENDA + CONTACT */}
-      <section
-        id="split-section"
-        className="bg-amber-50/40 border-t border-stone-200 py-16 px-6"
-      >
+      <section id="split-section" className="bg-amber-50/40 border-t border-stone-200 py-12 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
 
           {/* Agenda */}
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div>
-              <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">
-                Prochaines dates
-              </h2>
-              <div className="w-12 h-1 bg-amber-500 rounded mb-6"></div>
+              <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">Prochaines dates</h2>
+              <div className="w-12 h-1 bg-amber-500 rounded mb-4"></div>
             </div>
 
             <div className="space-y-6">
               {PROCHAINES_DATES.slice(0, 3).map((evt) => (
-                <div
-                  key={evt.id}
-                  className="border-b border-amber-200 pb-5 last:border-none"
-                >
-                  <div className="flex flex-wrap items-center gap-2 mb-1">
-                    <span className="text-xs font-bold uppercase text-amber-600">
-                      {evt.date}
-                    </span>
-                    {evt.estPublic ? (
-                      <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                        🌍 Public
-                      </span>
-                    ) : (
-                      <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                        🔒 Privé
-                      </span>
-                    )}
-                    {evt.estGratuit && (
-                      <span className="bg-amber-100 text-amber-800 text-[10px] font-bold px-2 py-0.5 rounded-full">
-                        🎁 Gratuit
-                      </span>
-                    )}
-                  </div>
-
-                  <h3 className="text-lg font-bold text-stone-800 font-serif">
-                    {evt.title}
-                  </h3>
-                  <p className="text-stone-500 text-xs mb-2">
-                    📍 {evt.location}
-                  </p>
-                  {evt.description && (
-                    <p className="text-stone-600 text-sm leading-relaxed">
-                      {evt.description}
-                    </p>
+                <div key={evt.id} className="border-b border-amber-200 pb-5 last:border-none flex gap-4 items-start">
+                  
+                  {/* Petit logo/émoji d'événement optionnel */}
+                  {evt.logoEvenement && (
+                    <div className="text-2xl p-2 bg-white rounded-lg shadow-sm border border-amber-100 select-none">
+                      {evt.logoEvenement}
+                    </div>
                   )}
+
+                  <div className="flex-1">
+                    <div className="flex flex-wrap items-center gap-2 mb-1">
+                      <span className="text-xs font-bold uppercase text-amber-600">{evt.date}</span>
+                      {evt.estPublic ? (
+                        <span className="bg-emerald-100 text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full">🌍 Public</span>
+                      ) : (
+                        <span className="bg-purple-100 text-purple-800 text-[10px] font-bold px-2 py-0.5 rounded-full">🔒 Privé</span>
+                      )}
+                      {/* Affichage adaptatif du tarif */}
+                      {renderBadgeTarif(evt.tarif)}
+                    </div>
+
+                    <h3 className="text-lg font-bold text-stone-800 font-serif">{evt.title}</h3>
+                    <p className="text-stone-500 text-xs mb-2">📍 {evt.location}</p>
+                    {evt.description && <p className="text-stone-600 text-sm leading-relaxed">{evt.description}</p>}
+                  </div>
                 </div>
               ))}
             </div>
 
-            <Link
-              href="/agenda"
-              className="inline-block text-amber-600 hover:text-amber-700 font-medium transition-colors"
-            >
+            <Link href="/agenda" className="inline-block text-amber-600 hover:text-amber-700 font-medium transition-colors">
               Voir tout l'agenda complet →
             </Link>
           </div>
 
           {/* Contact */}
-          <div className="bg-white p-8 md:p-10 rounded-2xl shadow-sm border border-stone-100">
-            <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">
-              Contact
-            </h2>
-            <p className="text-stone-600 text-sm mb-8 italic">
-              Organisateurs, programmateurs, public...
-            </p>
-
-            <div className="space-y-8">
+          <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
+            <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">Contact</h2>
+            <p className="text-stone-600 text-sm mb-6 italic">Organisateurs, programmateurs, public...</p>
+            <div className="space-y-6">
               <div>
-                <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-2">
-                  Email direct
-                </p>
-                <a
-                  href={`mailto:${SITE_INFOS.emailContact}`}
-                  className="text-xl md:text-2xl font-bold text-red-950 hover:text-amber-600 transition-colors break-all"
-                >
+                <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-1">Email direct</p>
+                <a href={`mailto:${SITE_INFOS.emailContact}`} className="text-xl md:text-2xl font-bold text-red-950 hover:text-amber-600 transition-colors break-all">
                   {SITE_INFOS.emailContact}
                 </a>
-              </div>
-
-              <div className="pt-6 border-t border-stone-100">
-                <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-4">
-                  Suivez le collectif
-                </p>
-                <div className="flex flex-wrap gap-5">
-                  {SITE_INFOS.reseauxSociaux.map((res, idx) => (
-                    <a
-                      key={idx}
-                      href={res.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-stone-600 hover:text-amber-600 transition-colors"
-                    >
-                      <span className="text-xl">{res.icone}</span>
-                      <span className="text-sm font-medium">{res.nom}</span>
-                    </a>
-                  ))}
-                </div>
               </div>
             </div>
           </div>
