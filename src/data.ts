@@ -3,7 +3,7 @@
 export const SITE_INFOS = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
-  logo: "/images/logo.webp",
+  logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000",
   
   // Description courte utilisée sur la page d'accueil (gère les sauts de ligne grâce aux `backticks`)
   descriptionLongue: `T-RAD (prononcez Ti RAD) inspirés des parquets de bal.
@@ -68,21 +68,21 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
     nom: "Naomi",
     role: "Flûte traversière, Toy-Piano et Chant",
     description: "Musicienne accomplie et bourrée de talent. Elle vous enchantera de ses mélodies .",
-    photoUrl: "https://drive.google.com/thumbnail?id=1682JkRyU7jztD8Z8-Q-ee52ovm2fh9aW&sz=w1000W" // 💡 Mettez le fichier .webp dans public/images/
-  },
-  {
-    id: "m2",
-    nom: "Florian",
-    role: "Viole de Gambe et Percussions",
-    description: "Un maitre dans le BaROCK et la navigation entre les styles.",
-    photoUrl: "https://drive.google.com/thumbnail?id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k&sz=w1000"
+    photoUrl: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000" // 💡 Mettez le fichier .webp dans public/images/
   },
   {
     id: "m3",
+    nom: "Florian",
+    role: "Viole de Gambe et Percussions",
+    description: "Un maitre dans le BaROCK, il navigue entre les styles.",
+    photoUrl: "https://drive.google.com/thumbnail?id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k&sz=w1000"
+  },
+  {
+    id: "m1",
     nom: "Antoine",
     role: "Guitare / Bouzouki",
-    description: "Apporte la rythmique dansante et l'énergie.",
-    photoUrl: "https://drive.google.com/thumbnail?id=1rp_xdnf6jccJHp5Y9fiUu0Cmvbx4l1mE&sz=w1000"
+    description: "Surfeur troubadour de la rythmique, il vous portera sur les vagues harmoniques.",
+    photoUrl: "https://drive.google.com/thumbnail?id=1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy&sz=w2000"
   }
 ];
 
@@ -97,7 +97,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     estPublic: true,
     estGratuit: true,
     boutons: [
-      { label: "Billetterie", url: "https://www.billetweb.fr/exemple1" },
+      { label: "Gps", url: "https://www.bing.com/ck/a?!&&p=0842dffa8252bf1caf036e4dbbee0b425ef191a3aad2bb8df8a6c5196969320aJmltdHM9MTc4NDQxOTIwMA&ptn=3&ver=2&hsh=4&fclid=0232c838-8459-642e-2542-de25850365e7&u=a1L21hcHM_Jm1lcGk9MH5-RW1iZWRkZWR-QWRkcmVzc19MaW5rJnR5PTE4JnE9TGElMjBGZXJtZSUyMGQlMjdlbiUyMEhhdXQmc3M9eXBpZC5ZTjIxMTE4QkE1NDUyMzAzODUmcHBvaXM9NTAuNjM4NzYzNDI3NzM0Mzc1XzMuMTMwMTg2Nzk2MTg4MzU0NV9MYSUyMEZlcm1lJTIwZCUyN2VuJTIwSGF1dF9ZTjIxMTE4QkE1NDUyMzAzODV-JmNwPTUwLjYzODc2M34zLjEzMDE4NyZ2PTImc1Y9MSZGT1JNPU1QU1JQTA" },
       { label: "Événement Facebook", url: "https://facebook.com/events/123" },
       { label: "Site de l'organisateur", url: "https://cutt.ly/exemple" }
     ]
@@ -105,14 +105,14 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "2",
     date: "Novembre",
-    title: "Grand Bal Folk des Compagnons du Devoir",
+    title: "Grand Bal Folk des Compagnons du Devoir, 118 Rue de Babylone, 59491 Villeneuve-d'Ascq",
     location: "Villeneuve d'Ascq (59)",
-    description: "Grand bal folk annuel organisé par les compagnons. Initiation aux danses traditionnelles en début de soirée.",
+    description: "Grand bal folk annuel organisé par les compagnons. Initiation aux danses traditionnelles en début de soirée avec les Pas d.",
     estPublic: true,
     estGratuit: false,
     boutons: [
       { label: "Réserver ma place", url: "https://www.billetweb.fr/exemple2" },
-      { label: "Infos Pratiques", url: "https://www.google.com/maps" }
+      { label: "Infos Pratiques", url: "https://www.google.com/maps/dir//Les+Compagnons+du+Devoir,+118+Rue+de+Babylone,+59491+Villeneuve-d'Ascq/@50.6124892,2.5069786,9z/data=!3m1!4b1!4m17!1m7!3m6!1s0x47c329b65e51ef73:0xbf53ff08490d9e5!2sLes+Compagnons+du+Devoir!8m2!3d50.659956!4d3.14302!16s%2Fg%2F1tdw2mm4!4m8!1m0!1m5!1m1!1s0x47c329b65e51ef73:0xbf53ff08490d9e5!2m2!1d3.142971!2d50.659972!3e1?authuser=0&entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" }
     ]
   },
   {
