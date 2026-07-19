@@ -53,10 +53,20 @@ export interface EvenementAgenda {
   description: string;
   estPublic: boolean;  
   tarif: boolean | string; 
-  logoEvenement?: string;  
+  logoEvenement?: string;
   boutons: BoutonAgenda[];
 }
 
+// Interface pour le Trombinoscope
+export interface MembreTrombi {
+  id: string;
+  nom: string;
+  role: string;
+  description: string;
+  photoUrl: string;
+}
+
+// --- DONNÉES ---
 export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
@@ -71,7 +81,7 @@ export const SITE_INFOS: SiteInfos = {
   ],
   lienMedia: "https://youtube.com/c/tiradfolk",
   presentationTitre: "Qui sommes-nous ?",
-  presentationTexte: "T-RAD c'est l'énergie brute...",
+  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk alliée à la douceur des musiques traditionnelles.\n\nNotre répertoire mélange compositions originales et morceaux traditionnels réarrangés, portés par le souffle de la danse et la complicité des musiciens.`,
   design: {
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
@@ -107,7 +117,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Octobre",
     title: "La première !!! Répétition Publique",
     location: "Villeneuve d'Ascq - Ferme d'en haut",
-    description: "Venez découvrir nos morceaux en avant-première !",
+    description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous !",
     estPublic: true,
     tarif: "non", 
     logoEvenement: "🎻",
@@ -124,4 +134,12 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     logoEvenement: "💃",
     boutons: []
   }
+  // Tu peux rajouter tes autres dates ici au même format...
+];
+
+// On remet le Trombinoscope que tu avais au début !
+export const TROMBINOSCOPE: MembreTrombi[] = [
+  { id: "m1", nom: "Naomi", role: "Flûte...", description: "Des mélodies virevoltantes aux flûtes.", photoUrl: "" },
+  { id: "m2", nom: "Florian", role: "Viole...", description: "La rondeur et la profondeur des cordes frottées.", photoUrl: "" },
+  { id: "m3", nom: "Antoine", role: "Guitare...", description: "Une rythmique solide et entraînante.", photoUrl: "" }
 ];
