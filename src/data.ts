@@ -3,6 +3,7 @@
 export const SITE_INFOS = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
+  logo: "/images/logo.webp",
   
   // Description courte utilisée sur la page d'accueil (gère les sauts de ligne grâce aux `backticks`)
   descriptionLongue: `T-RAD (prononcez Ti RAD) inspirés des parquets de bal.
