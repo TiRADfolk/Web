@@ -81,7 +81,8 @@ export const SITE_INFOS: SiteInfos = {
   ],
   lienMedia: "https://youtube.com/c/tiradfolk",
   presentationTitre: "Qui sommes-nous ?",
-  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk alliée à la douceur des musiques traditionnelles.\n\nNotre répertoire mélange compositions originales et morceaux traditionnels réarrangés, portés par le souffle de la danse et la complicité des musiciens.`,
+  presentationTexte: `T-RAD (prononcez Ti RAD) 
+  c'est tout nouveau !!! C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.`,
   design: {
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
@@ -90,9 +91,9 @@ export const SITE_INFOS: SiteInfos = {
 
 export const NEWS_INFO: NewsItem = {
   afficherSurAccueil: true,
-  titre: "Sortie de notre premier EP !",
-  description: "Découvrez nos tout premiers morceaux enregistrés en studio disponibles dès maintenant.",
-  lien: "https://youtube.com/c/tiradfolk",
+  titre: "Un nouveau né !",
+  description: "",
+  lien: "",
   image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
 };
 
@@ -100,13 +101,13 @@ export const ACTIVITES: Activite[] = [
   {
     id: "act-1",
     titre: "Les Bals Folk",
-    description: "Des soirées endiablées rythmées par les mazurkas, chapelloises et cercles circassiens.",
+    description: "3 prestations en préparation d'ici la fin de l'année.",
     image: ""
   },
   {
     id: "act-2",
-    titre: "Ateliers d'initiation",
-    description: "Idéal pour apprendre les pas de base avant d'entrer sur le parquet de bal.",
+    titre: "",
+    description: "",
     image: ""
   }
 ];
@@ -130,7 +131,18 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     location: "Villeneuve d'Ascq (59)",
     description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
-    tarif: "6-8€", 
+    tarif: "€", 
+    logoEvenement: "💃",
+    boutons: []
+  },
+    {
+    id: "3",
+    date: "Décembre",
+    title: "Le MoederBal du dimanche",
+    location: "Halluin (59)",
+    description: "4 fois par an le MoederBal propose de découvrir sur scène et sur la piste 3 groupes.",
+    estPublic: true,
+    tarif: "6€", 
     logoEvenement: "💃",
     boutons: []
   }
@@ -139,7 +151,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
 
 // On remet le Trombinoscope que tu avais au début !
 export const TROMBINOSCOPE: MembreTrombi[] = [
-  { id: "m1", nom: "Naomi", role: "Flûte...", description: "Des mélodies virevoltantes aux flûtes.", photoUrl: "" },
-  { id: "m2", nom: "Florian", role: "Viole...", description: "La rondeur et la profondeur des cordes frottées.", photoUrl: "" },
-  { id: "m3", nom: "Antoine", role: "Guitare...", description: "Une rythmique solide et entraînante.", photoUrl: "" }
+  { id: "m1", nom: "Naomi", role: "Flûte traversière, Toy-Piano, Chant", description: "Musicienne de talent, elle vous enchantera de ses melodies", photoUrl: "https://drive.google.com/uc?export=view&id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP" },
+  { id: "m2", nom: "Florian", role: "Viole de Gambe, Percussions", description: "Maitre du BaROCK, il navigue entre les styles ", photoUrl: "https://drive.google.com/uc?export=view&id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k" },
+  { id: "m3", nom: "Antoine", role: "Guitare, Bouzouki, Chant", description: "Surfeur de la vague harmonique et rythmique.", photoUrl: "https://drive.google.com/uc?export=view&id=1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy" }
 ];
