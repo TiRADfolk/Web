@@ -1,3 +1,5 @@
+// src/app/agenda/page.tsx
+
 import Link from 'next/link';
 import { PROCHAINES_DATES, EvenementAgenda } from '../../data';
 
@@ -12,6 +14,8 @@ export default function AgendaPage() {
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
         <Link href="/" className="text-amber-600 hover:text-amber-700 text-sm font-medium mb-6 inline-block">← Retour à l'accueil</Link>
+        
+        {/* Titre */}
         <h1 className="text-4xl font-serif font-extrabold text-red-900 mb-2">Agenda Complet</h1>
         <div className="w-16 h-1 bg-amber-500 rounded mb-8"></div>
         
@@ -37,4 +41,4 @@ export default function AgendaPage() {
       </div>
     </div>
   );
-}  
+}
