@@ -105,7 +105,7 @@ export const NEWS_INFO: NewsItem = {
 T-RAD est une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés. 
 
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
-Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposing des arrangements soignés et une musique qui donne envie de rejoindre la ronde dès les premières notes.
+Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
 
 La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
