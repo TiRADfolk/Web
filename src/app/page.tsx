@@ -1,7 +1,6 @@
 // src/app/page.tsx
 
 import Link from 'next/link';
-// Correction du chemin d'importation ici : on remonte d'un seul niveau (../data)
 import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO, EvenementAgenda } from '../data';
 
 export default function HomePage() {
@@ -60,11 +59,12 @@ export default function HomePage() {
       {NEWS_INFO?.afficherSurAccueil && (
         <section className="max-w-4xl mx-auto mt-12 p-6 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm">
           <div className="flex flex-col md:flex-row gap-6 items-center">
-            {NEWS_INFO.image && <img src={NEWS_INFO.image} alt={NEWS_INFO.titre} className="w-full md:w-48 h-32 object-cover rounded-xl shadow-md" />}
+            {NEWS_INFO.image && <img src={NEWS_INFO.image} alt={NEWS_INFO.titre} className="w-full md:w-48 h-auto object-cover rounded-xl shadow-md" />}
             <div className="flex-1 text-center md:text-left">
               <span className="bg-red-700 text-white text-xs uppercase font-extrabold px-2.5 py-1 rounded-md">News</span>
               <h2 className="text-2xl font-serif font-bold text-red-900 mt-2 mb-2">{NEWS_INFO.titre}</h2>
-              <p className="text-stone-700 text-base mb-4">{NEWS_INFO.description}</p>
+              {/* CORRECTION ICI : Ajout de whitespace-pre-line pour le pavé de News */}
+              <p className="text-stone-700 text-base mb-4 whitespace-pre-line">{NEWS_INFO.description}</p>
               {NEWS_INFO.lien && <a href={NEWS_INFO.lien} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-bold text-amber-700 hover:underline">En savoir plus →</a>}
             </div>
           </div>
@@ -74,7 +74,8 @@ export default function HomePage() {
       {/* QUI SOMMES-NOUS */}
       <section className="max-w-4xl mx-auto py-12 px-6 text-center">
         <h2 className="text-3xl font-serif font-bold text-red-900 mb-4">Qui sommes-nous ?</h2>
-        <p className="text-lg text-stone-700 leading-relaxed">{SITE_INFOS.descriptionLongue}</p>
+        {/* CORRECTION ICI : Ajout de whitespace-pre-line pour le pavé de description d'accueil */}
+        <p className="text-lg text-stone-700 leading-relaxed whitespace-pre-line">{SITE_INFOS.descriptionLongue}</p>
       </section>
 
       {/* AGENDA & CONTACT */}
@@ -96,7 +97,7 @@ export default function HomePage() {
                     </div>
                     <h3 className="text-lg font-bold text-stone-800 font-serif">{evt.title}</h3>
                     <p className="text-stone-500 text-xs mb-2">📍 {evt.location}</p>
-                    {evt.description && <p className="text-stone-600 text-sm leading-relaxed">{evt.description}</p>}
+                    {evt.description && <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{evt.description}</p>}
                   </div>
                 </div>
               ))}
