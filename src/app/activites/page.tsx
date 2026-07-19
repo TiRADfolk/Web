@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { ACTIVITES } from '../../data';
+import { ACTIVITES, Activite } from '../../data';
 
 export default function ActivitesPage() {
   return (
@@ -19,7 +19,7 @@ export default function ActivitesPage() {
         <div className="w-16 h-1 bg-amber-500 rounded mb-8"></div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {ACTIVITES.map((act) => (
+          {ACTIVITES.map((act: Activite) => (
             <div 
               key={act.id} 
               className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex flex-col justify-between"
