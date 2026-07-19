@@ -101,12 +101,16 @@ export const NEWS_INFO: NewsItem = {
   afficherSurAccueil: true,
   titre: "Un nouveau né !",
   description: `À peine six mois d'existence et déjà la tête pleine de projets !
+  
 T-RAD est une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés. 
+
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
 Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des arrangements soignés et une musique qui donne envie de rejoindre la ronde dès les premières notes.
+
 La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
-  image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
+  image: "https://lh3.googleusercontent.com/d/1GhVjVGi1KHbEYaeXsH1qcBiDrG2HW6mG
+"
 };
 
 export const ACTIVITES: Activite[] = [
