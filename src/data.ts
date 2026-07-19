@@ -3,35 +3,68 @@ export const SITE_INFOS = {
   slogan: "La chaleur du Folk, le souffle de la danse",
   logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000",
   
-  // Description courte utilisée sur la page d'accueil (gère les sauts de ligne grâce aux `backticks`)
   descriptionLongue: `T-RAD (prononcez Ti RAD) inspirés des parquets de bal.
 Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
   
-  // Contacts et réseaux
   emailContact: "tiradfolk@gmail.com",
-  telephone: "", // Laissez vide "" si vous ne voulez pas l'afficher
+  telephone: "",
   reseauxSociaux: [
     { nom: "Bientôt Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
     { nom: "Bientôt Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
     { nom: "Bientôt YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
   ],
 
-  // Textes modifiables pour la page /presentation
+  // 🎵 Lien pour le nouveau bouton média du bandeau
+  lienMedia: "https://youtube.com/c/tiradfolk",
+
   presentationTitre: "Qui sommes-nous ?",
-  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk alliée à la douceur des musiques traditionnelles.
+  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk...`,
 
-Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités. 
-
-Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
-
-  // Design & Visuels configurables
   design: {
-    // 💡 "" = Fond uni dégradé (sécurisé & ultra-optimisé). 
-    // 💡 "/images/votre-image.webp" = Affichera l'image de fond.
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
   }
 };
+
+// --- SECTION NEWS (NOUVEAU) ---
+export interface NewsItem {
+  afficherSurAccueil: boolean;
+  titre: string;
+  description: string;
+  lien?: string;
+  image?: string;
+}
+
+export const NEWS_INFO: NewsItem = {
+  afficherSurAccueil: true, // 💡 Mettre à "false" pour masquer la section sur l'accueil
+  titre: "Sortie de notre premier EP !",
+  description: "Découvrez nos tout premiers morceaux enregistrés en studio disponibles dès maintenant.",
+  lien: "https://youtube.com/c/tiradfolk",
+  image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000" // Image d'illustration
+};
+
+// --- PAGE ACTIVITÉS (NOUVEAU) ---
+export interface Activite {
+  id: string;
+  titre: string;
+  description: string;
+  image?: string;
+}
+
+export const ACTIVITES: Activite[] = [
+  {
+    id: "act-1",
+    titre: "Les Bals Folk",
+    description: "Des soirées endiablées rythmées par les mazurkas, chapelloises et cercles circassiens.",
+    image: ""
+  },
+  {
+    id: "act-2",
+    titre: "Ateliers d'initiation",
+    description: "Idéal pour apprendre les pas de base avant d'entrer sur le parquet de bal.",
+    image: ""
+  }
+];
 
 // --- TYPES & INTERFACES DE L'AGENDA ---
 export interface BoutonAgenda {
@@ -45,72 +78,42 @@ export interface EvenementAgenda {
   title: string;
   location: string;
   description: string;
-  estPublic: boolean;  // true = Badge Public | false = Badge Privé
-  estGratuit: boolean; // true = Badge Gratuit / Entrée Libre
+  estPublic: boolean;  
+  // 💡 Modulable : 
+  // - "non" ou false -> badge Gratuit
+  // - "oui" ou true -> badge €
+  // - "6-8€" (ou autre texte) -> affichera directement ce texte
+  tarif: boolean | string; 
+  logoEvenement?: string; // 💡 Optionnel : petit logo/image par événement
   boutons: BoutonAgenda[];
 }
 
-// --- STRUCTURE DU TROMBINOSCOPE ---
-export interface MembreTrombi {
-  id: string;
-  nom: string;
-  role: string;
-  description: string;
-  photoUrl: string;
-}
-
-// --- DONNÉES DU TROMBINOSCOPE (LES MEMBRES) ---
-export const TROMBINOSCOPE: MembreTrombi[] = [
-  {
-    id: "m1",
-    nom: "Naomi",
-    role: "Flûte traversière, Toy-Piano et Chant",
-    description: "Musicienne accomplie et bourrée de talent. Elle vous enchantera de ses mélodies.",
-    photoUrl: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
-  },
-  {
-    id: "m2",
-    nom: "Florian",
-    role: "Viole de Gambe et Percussions",
-    description: "Un maitre dans le BaROCK, il navigue entre les styles.",
-    photoUrl: "https://drive.google.com/thumbnail?id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k&sz=w1000"
-  },
-  {
-    id: "m3",
-    nom: "Antoine",
-    role: "Guitare / Bouzouki",
-    description: "Surfeur troubadour de la rythmique, il vous portera sur les vagues harmoniques.",
-    photoUrl: "https://drive.google.com/thumbnail?id=1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy&sz=w2000"
-  }
-];
-
-// --- DONNÉES DE L'AGENDA (VOS PROCHAINES DATES) ---
+// --- DONNÉES DE L'AGENDA ---
 export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "1",
     date: "Octobre",
     title: "La première !!! Répétition Publique",
     location: "Villeneuve d'Ascq - Ferme d'en haut",
-    description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous ! L'occasion idéale pour se rencontrer et échanger.",
+    description: "Venez découvrir nos morceaux en avant-première !",
     estPublic: true,
-    estGratuit: true,
+    tarif: "non", 
+    logoEvenement: "🎻", // Peut être un émoji ou une URL d'image complète
     boutons: [
-      { label: "Gps", url: "https://www.bing.com/ck/a?!&&p=0842dffa8252bf1caf036e4dbbee0b425ef191a3aad2bb8df8a6c5196969320aJmltdHM9MTc4NDQxOTIwMA&ptn=3&ver=2&hsh=4&fclid=0232c838-8459-642e-2542-de25850365e7&u=a1L21hcHM_Jm1lcGk9MH5-RW1iZWRkZWR-QWRkcmVzc19MaW5rJnR5PTE4JnE9TGElMjBGZXJtZSUyMGQlMjdlbiUyMEhhdXQmc3M9eXBpZC5ZTjIxMTE4QkE1NDUyMzAzODUmcHBvaXM9NTAuNjM4NzYzNDI3NzM0Mzc1XzMuMTMwMTg2Nzk2MTg4MzU0NV9MYSUyMEZlcm1lJTIwZCUyN2VuJTIwSGF1dF9ZTjIxMTE4QkE1NDUyMzAzODV-JmNwPTUwLjYzODc2M34zLjEzMDE4NyZ2PTImc1Y9MSZGT1JNPU1QU1JQTA" },
-      { label: "Événement Facebook", url: "https://facebook.com/events/123" },
-      { label: "Site de l'organisateur", url: "https://cutt.ly/exemple" }
+      { label: "Gps", url: "https://..." }
     ]
   },
   {
     id: "2",
     date: "Novembre",
-    title: "Grand Bal Folk des Compagnons du Devoir, 118 Rue de Babylone, 59491 Villeneuve-d'Ascq",
+    title: "Grand Bal Folk des Compagnons du Devoir",
     location: "Villeneuve d'Ascq (59)",
-    description: "Grand bal folk annuel organisé par les compagnons. Initiation aux danses traditionnelles en début de soirée.",
+    description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
-    estGratuit: false,
+    tarif: "6-8€", // 💡 Affiche directement le texte personnalisé
+    logoEvenement: "💃",
     boutons: [
-      { label: "Réserver ma place", url: "https://www.billetweb.fr/exemple2" },
-      { label: "Infos Pratiques", url: "https://www.google.com/maps/dir//Les+Compagnons+du+Devoir,+118+Rue+de+Babylone,+59491+Villeneuve-d'Ascq/@50.6124892,2.5069786,9z/data=!3m1!4b1!4m17!1m7!3m6!1s0x47c329b65e51ef73:0xbf53ff08490d9e5!2sLes+Compagnons+du+Devoir!8m2!3d50.659956!4d3.14302!16s%2Fg%2F1tdw2mm4!4m8!1m0!1m5!1m1!1s0x47c329b65e51ef73:0xbf53ff08490d9e5!2m2!1d3.142971!2d50.659972!3e1?authuser=0&entry=ttu&g_ep=EgoyMDI2MDcxNS4wIKXMDSoASAFQAw%3D%3D" }
+      { label: "Réserver", url: "https://..." }
     ]
   },
   {
@@ -118,11 +121,17 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Décembre",
     title: "MoederBal du dimanche",
     location: "Halluin (59)",
-    description: "4 fois par an le MoederBal invite 3 groupes pour animer un dimanche après-midi de danse intensive.",
+    description: "4 fois par an le MoederBal invite 3 groupes.",
     estPublic: true,
-    estGratuit: false,
-    boutons: [
-      { label: "Infos Événement", url: "https://facebook.com/moederbal.bal/" }
-    ]
+    tarif: "oui", // 💡 Affiche juste "€"
+    boutons: []
   }
+];
+
+// --- DONNÉES DU TROMBINOSCOPE ---
+export interface MembreTrombi { id: string; nom: string; role: string; description: string; photoUrl: string; }
+export const TROMBINOSCOPE: MembreTrombi[] = [
+  { id: "m1", nom: "Naomi", role: "Flûte...", description: "...", photoUrl: "..." },
+  { id: "m2", nom: "Florian", role: "Viole...", description: "...", photoUrl: "..." },
+  { id: "m3", nom: "Antoine", role: "Guitare...", description: "...", photoUrl: "..." }
 ];
