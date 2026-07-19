@@ -1,3 +1,5 @@
+// src/app/page.tsx
+
 import Link from 'next/link';
 import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO, EvenementAgenda } from '../data';
 
@@ -18,7 +20,7 @@ export default function HomePage() {
 
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900">
-      {/* HERO BANDEAU OPTIMISÉ & COMPACT */}
+      {/* HERO BANDEAU */}
       <section
         className={`relative py-8 text-center px-4 bg-cover bg-center bg-no-repeat flex items-center justify-center min-h-[25vh] ${
           !aUneImageDeFond ? 'bg-gradient-to-br from-amber-900 to-stone-900' : ''
@@ -42,7 +44,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* MENU SUR UNE MÊME LIGNE */}
           <nav className="flex flex-wrap justify-center items-center gap-3">
             <Link href="/presentation" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Présentation</Link>
             <Link href="/activites" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Activités</Link>
@@ -54,7 +55,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* SECTION NEWS CONDITIONNELLE */}
+      {/* SECTION NEWS */}
       {NEWS_INFO?.afficherSurAccueil && (
         <section className="max-w-4xl mx-auto mt-12 p-6 bg-amber-50 rounded-2xl border border-amber-200 shadow-sm">
           <div className="flex flex-col md:flex-row gap-6 items-center">
@@ -69,13 +70,13 @@ export default function HomePage() {
         </section>
       )}
 
-      {/* PRÉSENTATION COURTE */}
+      {/* QUI SOMMES-NOUS */}
       <section className="max-w-4xl mx-auto py-12 px-6 text-center">
         <h2 className="text-3xl font-serif font-bold text-red-900 mb-4">Qui sommes-nous ?</h2>
         <p className="text-lg text-stone-700 leading-relaxed">{SITE_INFOS.descriptionLongue}</p>
       </section>
 
-      {/* AGENDA & CONTACT BLOC */}
+      {/* AGENDA & CONTACT */}
       <section className="bg-amber-50/40 border-t border-stone-200 py-12 px-6">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
           <div className="space-y-6">
@@ -104,7 +105,6 @@ export default function HomePage() {
 
           <div className="bg-white p-8 rounded-2xl shadow-sm border border-stone-100">
             <h2 className="text-3xl font-serif font-bold text-red-900 mb-2">Contact</h2>
-            <p className="text-stone-600 text-sm mb-4">Pour toute demande de réservation ou d'information :</p>
             <a href={`mailto:${SITE_INFOS.emailContact}`} className="text-xl md:text-2xl font-bold text-red-950 hover:text-amber-600 transition-colors break-all">{SITE_INFOS.emailContact}</a>
           </div>
         </div>
