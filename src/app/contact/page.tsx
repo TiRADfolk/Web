@@ -11,14 +11,14 @@ export default function ContactPage() {
         <div className="w-16 h-1 bg-amber-500 mx-auto mb-8 rounded"></div>
         
         <p className="text-lg text-stone-600 max-w-xl mx-auto mb-12">
-          Vous souhaitez programmer le collectif **{SITE_INFOS.nom}** pour un festival, un fest-noz, un bal ou un événement privé ? 
+          Vous souhaitez programmer le groupe **{SITE_INFOS.nom}** pour un bal ou un événement privé ? 
           Discutons ensemble de votre projet.
         </p>
         
         {/* Encadré de contact direct */}
         <div className="bg-white p-8 md:p-12 rounded-2xl shadow-md border border-stone-100 max-w-2xl mx-auto mb-12">
           <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-3">
-            Nous écrire par email
+            Nous écrire par Courriel
           </p>
           <a 
             href={`mailto:${SITE_INFOS.emailContact}`}
