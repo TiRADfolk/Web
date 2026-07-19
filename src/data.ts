@@ -1,11 +1,35 @@
-export const SITE_INFOS = {
+// --- TYPES & INTERFACES DU SITE ---
+export interface SiteDesign {
+  heroBackgroundImage: string;
+  overlayOpacity: string;
+}
+
+export interface ReseauSocial {
+  nom: string;
+  url: string;
+  icone: string;
+}
+
+export interface SiteInfos {
+  nom: string;
+  slogan: string;
+  logo: string;
+  descriptionLongue: string;
+  emailContact: string;
+  telephone: string;
+  reseauxSociaux: ReseauSocial[];
+  lienMedia: string; // Garantit la détection par TypeScript
+  presentationTitre: string;
+  presentationTexte: string;
+  design: SiteDesign;
+}
+
+export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
   logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000",
-  
   descriptionLongue: `T-RAD (prononcez Ti RAD) inspirés des parquets de bal.
 Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
-  
   emailContact: "tiradfolk@gmail.com",
   telephone: "",
   reseauxSociaux: [
@@ -13,20 +37,16 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
     { nom: "Bientôt Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
     { nom: "Bientôt YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
   ],
-
-  // 🎵 Lien pour le nouveau bouton média du bandeau
   lienMedia: "https://youtube.com/c/tiradfolk",
-
   presentationTitre: "Qui sommes-nous ?",
   presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk...`,
-
   design: {
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
   }
 };
 
-// --- SECTION NEWS (NOUVEAU) ---
+// --- SECTION NEWS ---
 export interface NewsItem {
   afficherSurAccueil: boolean;
   titre: string;
@@ -36,14 +56,14 @@ export interface NewsItem {
 }
 
 export const NEWS_INFO: NewsItem = {
-  afficherSurAccueil: true, // 💡 Mettre à "false" pour masquer la section sur l'accueil
+  afficherSurAccueil: true,
   titre: "Sortie de notre premier EP !",
   description: "Découvrez nos tout premiers morceaux enregistrés en studio disponibles dès maintenant.",
   lien: "https://youtube.com/c/tiradfolk",
-  image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000" // Image d'illustration
+  image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
 };
 
-// --- PAGE ACTIVITÉS (NOUVEAU) ---
+// --- PAGE ACTIVITÉS ---
 export interface Activite {
   id: string;
   titre: string;
@@ -79,12 +99,8 @@ export interface EvenementAgenda {
   location: string;
   description: string;
   estPublic: boolean;  
-  // 💡 Modulable : 
-  // - "non" ou false -> badge Gratuit
-  // - "oui" ou true -> badge €
-  // - "6-8€" (ou autre texte) -> affichera directement ce texte
   tarif: boolean | string; 
-  logoEvenement?: string; // 💡 Optionnel : petit logo/image par événement
+  logoEvenement?: string;
   boutons: BoutonAgenda[];
 }
 
@@ -98,10 +114,8 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     description: "Venez découvrir nos morceaux en avant-première !",
     estPublic: true,
     tarif: "non", 
-    logoEvenement: "🎻", // Peut être un émoji ou une URL d'image complète
-    boutons: [
-      { label: "Gps", url: "https://..." }
-    ]
+    logoEvenement: "🎻",
+    boutons: []
   },
   {
     id: "2",
@@ -110,28 +124,8 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     location: "Villeneuve d'Ascq (59)",
     description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
-    tarif: "6-8€", // 💡 Affiche directement le texte personnalisé
+    tarif: "6-8€", 
     logoEvenement: "💃",
-    boutons: [
-      { label: "Réserver", url: "https://..." }
-    ]
-  },
-  {
-    id: "3",
-    date: "Décembre",
-    title: "MoederBal du dimanche",
-    location: "Halluin (59)",
-    description: "4 fois par an le MoederBal invite 3 groupes.",
-    estPublic: true,
-    tarif: "oui", // 💡 Affiche juste "€"
     boutons: []
   }
-];
-
-// --- DONNÉES DU TROMBINOSCOPE ---
-export interface MembreTrombi { id: string; nom: string; role: string; description: string; photoUrl: string; }
-export const TROMBINOSCOPE: MembreTrombi[] = [
-  { id: "m1", nom: "Naomi", role: "Flûte...", description: "...", photoUrl: "..." },
-  { id: "m2", nom: "Florian", role: "Viole...", description: "...", photoUrl: "..." },
-  { id: "m3", nom: "Antoine", role: "Guitare...", description: "...", photoUrl: "..." }
 ];
