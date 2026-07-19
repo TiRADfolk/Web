@@ -6,7 +6,6 @@ export default function ActivitesPage() {
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
         
-        {/* Bouton retour accueil */}
         <Link 
           href="/" 
           className="text-amber-600 hover:text-amber-700 text-sm font-medium mb-6 inline-block"
@@ -19,7 +18,6 @@ export default function ActivitesPage() {
         </h1>
         <div className="w-16 h-1 bg-amber-500 rounded mb-8"></div>
 
-        {/* Liste des activités */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {ACTIVITES.map((act) => (
             <div 
