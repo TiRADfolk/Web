@@ -1,4 +1,4 @@
-// src/app/page.tsx
+// src/app/page.tsx 
 
 import Link from 'next/link';
 import { SITE_INFOS, PROCHAINES_DATES } from '../data';
