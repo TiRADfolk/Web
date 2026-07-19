@@ -71,7 +71,11 @@ export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
   logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000",
-  descriptionLongue: `T-RAD (prononcez Ti RAD) inspirés des parquets de bal.\nPréparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
+  descriptionLongue: `T-RAD (prononcez Ti RAD) 
+  Né il y a à peine un semestre, T-RAD rassemble des musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés. 
+  Ce qui nous unit ? 
+  L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.
+  `,
   emailContact: "tiradfolk@gmail.com",
   telephone: "",
   reseauxSociaux: [
@@ -82,7 +86,11 @@ export const SITE_INFOS: SiteInfos = {
   lienMedia: "https://youtube.com/c/tiradfolk",
   presentationTitre: "Qui sommes-nous ?",
   presentationTexte: `T-RAD (prononcez Ti RAD) 
-  c'est tout nouveau !!! C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.`,
+  c'est tout nouveau !!! C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.
+  
+Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités.
+
+Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
   design: {
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
@@ -92,7 +100,11 @@ export const SITE_INFOS: SiteInfos = {
 export const NEWS_INFO: NewsItem = {
   afficherSurAccueil: true,
   titre: "Un nouveau né !",
-  description: "",
+  description: `À peine six mois d'existence et déjà la tête pleine de projets !
+T-RAD est une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés. 
+Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
+Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des arrangements soignés et une musique qui donne envie de rejoindre la ronde dès les premières notes.
+La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
   image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
 };
@@ -151,7 +163,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
 
 // On remet le Trombinoscope que tu avais au début !
 export const TROMBINOSCOPE: MembreTrombi[] = [
-  { id: "m1", nom: "Naomi", role: "Flûte traversière, Toy-Piano, Chant", description: "Musicienne de talent, elle vous enchantera de ses melodies", photoUrl: "https://drive.google.com/uc?export=view&id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP" },
-  { id: "m2", nom: "Florian", role: "Viole de Gambe, Percussions", description: "Maitre du BaROCK, il navigue entre les styles ", photoUrl: "https://drive.google.com/uc?export=view&id=1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k" },
-  { id: "m3", nom: "Antoine", role: "Guitare, Bouzouki, Chant", description: "Surfeur de la vague harmonique et rythmique.", photoUrl: "https://drive.google.com/uc?export=view&id=1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy" }
+  { id: "m1", nom: "Naomi", role: "Flûte traversière, Toy-Piano, Chant", description: "Musicienne accomplie et bourrée de talent, elle vous enchantera de ses melodies", photoUrl: "https://lh3.googleusercontent.com/d/1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP" },
+  { id: "m2", nom: "Florian", role: "Viole de Gambe, Percussions", description: "Maitre du BaROCK, il navigue entre les styles ", photoUrl: "https://lh3.googleusercontent.com/d/1ms_sh0ozVc7u6syCXzW7MDSfTQ2UA81k" },
+  { id: "m3", nom: "Antoine", role: "Guitare, Bouzouki, Chant", description: "Troubadour-Surfeur de la vague harmonique et rythmique.", photoUrl: "https://lh3.googleusercontent.com/d/1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy" }
 ];
