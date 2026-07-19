@@ -46,4 +46,4 @@ export default function ActivitesPage() {
       </div>
     </div>
   );
-} 
+}
