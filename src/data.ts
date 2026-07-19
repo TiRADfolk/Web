@@ -1,4 +1,4 @@
-// --- TYPES & INTERFACES DU SITE ---
+// --- DÉFINITION DES INTERFACES (POUR TYPESCRIPT) ---
 export interface SiteDesign {
   heroBackgroundImage: string;
   overlayOpacity: string;
@@ -18,12 +18,53 @@ export interface SiteInfos {
   emailContact: string;
   telephone: string;
   reseauxSociaux: ReseauSocial[];
-  lienMedia: string; // Garantit la détection par TypeScript
+  lienMedia: string;
   presentationTitre: string;
   presentationTexte: string;
   design: SiteDesign;
 }
 
+export interface NewsItem {
+  afficherSurAccueil: boolean;
+  titre: string;
+  description: string;
+  lien?: string;
+  image?: string;
+}
+
+export interface Activite {
+  id: string;
+  titre: string;
+  description: string;
+  image?: string;
+}
+
+export interface BoutonAgenda {
+  label: string;
+  url: string;
+}
+
+export interface EvenementAgenda {
+  id: string;
+  date: string;
+  title: string;
+  location: string;
+  description: string;
+  estPublic: boolean;  
+  tarif: boolean | string; // false/"non" = Gratuit, true/"oui" = €, "6-8€" = Texte
+  logoEvenement?: string;  // Émoji ou URL textuelle
+  boutons: BoutonAgenda[];
+}
+
+export interface MembreTrombi {
+  id: string;
+  nom: string;
+  role: string;
+  description: string;
+  photoUrl: string;
+}
+
+// --- DONNÉES DU SITE ---
 export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
@@ -39,7 +80,7 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
   ],
   lienMedia: "https://youtube.com/c/tiradfolk",
   presentationTitre: "Qui sommes-nous ?",
-  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk...`,
+  presentationTexte: `T-RAD (prononcez Ti RAD) c'est l'énergie brute des parquets de bal folk alliée à la douceur des musiques traditionnelles.`,
   design: {
     heroBackgroundImage: "", 
     overlayOpacity: "bg-black/60", 
@@ -47,30 +88,15 @@ Préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques
 };
 
 // --- SECTION NEWS ---
-export interface NewsItem {
-  afficherSurAccueil: boolean;
-  titre: string;
-  description: string;
-  lien?: string;
-  image?: string;
-}
-
 export const NEWS_INFO: NewsItem = {
-  afficherSurAccueil: true,
+  afficherSurAccueil: true, // Mettre à false pour masquer complètement la section
   titre: "Sortie de notre premier EP !",
   description: "Découvrez nos tout premiers morceaux enregistrés en studio disponibles dès maintenant.",
   lien: "https://youtube.com/c/tiradfolk",
   image: "https://drive.google.com/thumbnail?id=1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP&sz=w2000"
 };
 
-// --- PAGE ACTIVITÉS ---
-export interface Activite {
-  id: string;
-  titre: string;
-  description: string;
-  image?: string;
-}
-
+// --- LISTE DES ACTIVITÉS ---
 export const ACTIVITES: Activite[] = [
   {
     id: "act-1",
@@ -86,46 +112,5 @@ export const ACTIVITES: Activite[] = [
   }
 ];
 
-// --- TYPES & INTERFACES DE L'AGENDA ---
-export interface BoutonAgenda {
-  label: string;
-  url: string;
-}
-
-export interface EvenementAgenda {
-  id: string;
-  date: string;
-  title: string;
-  location: string;
-  description: string;
-  estPublic: boolean;  
-  tarif: boolean | string; 
-  logoEvenement?: string;
-  boutons: BoutonAgenda[];
-}
-
-// --- DONNÉES DE L'AGENDA ---
-export const PROCHAINES_DATES: EvenementAgenda[] = [
-  {
-    id: "1",
-    date: "Octobre",
-    title: "La première !!! Répétition Publique",
-    location: "Villeneuve d'Ascq - Ferme d'en haut",
-    description: "Venez découvrir nos morceaux en avant-première !",
-    estPublic: true,
-    tarif: "non", 
-    logoEvenement: "🎻",
-    boutons: []
-  },
-  {
-    id: "2",
-    date: "Novembre",
-    title: "Grand Bal Folk des Compagnons du Devoir",
-    location: "Villeneuve d'Ascq (59)",
-    description: "Grand bal folk annuel organisé par les compagnons.",
-    estPublic: true,
-    tarif: "6-8€", 
-    logoEvenement: "💃",
-    boutons: []
-  }
-];
+// --- VOS PROCHAINES DATES ---
+export const PROCHAINES_DATES
