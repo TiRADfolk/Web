@@ -9,7 +9,7 @@ export const SITE_INFOS: SiteInfos = {
   logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w3000",
 
   descriptionLongue: `T-RAD (prononcez Ti RAD) 
-Né il y a à peine un semestre, T-RAD rassemble des musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés.
+T-RAD rassemble 3 musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés.
 
                                         Ce qui nous unit ?
 L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.`,
@@ -43,7 +43,7 @@ L'envie de faire danser, de créer de belles rencontres et de partager l'énergi
   presentationTitre: "Qui sommes-nous ?",
 
   presentationTexte: `T-RAD (prononcez Ti RAD)
-c'est tout nouveau !!! C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.
+C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.
 
 Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités.
 Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
