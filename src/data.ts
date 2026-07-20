@@ -1,70 +1,6 @@
 // src/data.ts
 
-export interface SiteDesign {
-  heroBackgroundImage: string;
-  overlayOpacity: string;
-}
-
-export interface ReseauSocial {
-  nom: string;
-  url: string;
-  icone: string;
-}
-
-export interface SiteInfos {
-  nom: string;
-  slogan: string;
-  logo: string;
-  descriptionLongue: string;
-  emailContact: string;
-  telephone: string;
-  reseauxSociaux: ReseauSocial[];
-  lienMedia: string;
-  presentationTitre: string;
-  presentationTexte: string;
-  design: SiteDesign;
-}
-
-export interface NewsItem {
-  afficherSurAccueil: boolean;
-  titre: string;
-  description: string;
-  lien?: string;
-  image?: string;
-}
-
-export interface Activite {
-  id: string;
-  titre: string;
-  description: string;
-  image?: string;
-}
-
-export interface BoutonAgenda {
-  label: string;
-  url: string;
-}
-
-export interface EvenementAgenda {
-  id: string;
-  date: string;
-  title: string;
-  location: string;
-  lieuPrecise?: string; // Nouveau champ ajouté ici
-  description: string;
-  estPublic: boolean;
-  tarif: boolean | string;
-  logoEvenement?: string;
-  boutons: BoutonAgenda[];
-}
-
-export interface MembreTrombi {
-  id: string;
-  nom: string;
-  role: string;
-  description: string;
-  photoUrl: string;
-}
+import { SiteInfos, NewsItem, Activite, EvenementAgenda, MembreTrombi } from "./types";
 
 // --- INFOS SITE ---
 export const SITE_INFOS: SiteInfos = {
@@ -122,11 +58,11 @@ export const NEWS_INFO: NewsItem = {
   titre: "Un nouveau né !",
   description: `À peine six mois d'existence et déjà la tête pleine de projets !
 
-T-RAD est une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés.
+T-RAD is une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés.
 
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
 
-Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposing des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
+Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
 
 La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
@@ -149,12 +85,12 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     id: "1",
     date: "Octobre",
     title: "La première !!! Répétition Publique",
-    location: "Villeneuve d'Ascq - Ferme d'en haut ",
+    location: "Villeneuve d'Ascq",
     lieuPrecise: "La Ferme d'en Haut - 268 rue Jules Guesde, 59650 Villeneuve d'Ascq",
     description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous !",
     estPublic: true,
     tarif: "non",
-    logoEvenement: "https://lh3.googleusercontent.com/d/1NiX6g-e1Zq2KeqgMl2vbYEQPVNJ-Gr7u",
+    logoEvenement: "https://lh3.googleusercontent.com/d/1NiX6g-e1Zq2KeqgMl2vbYEQPVNJ-Gr7u", // Géré comme une URL image
     boutons: [
       { label: "Informations", url: "https://lafermedenhaut.villeneuvedascq.fr/agenda/831/evenement/77287074/le-bar-associatif-carre-rond" },
       { label: "Réserver", url: "" },
@@ -165,12 +101,12 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     id: "2",
     date: "Novembre",
     title: "Grand Bal Folk des Compagnons du Devoir",
-    location: "Villeneuve d'Ascq (59) - Maison des Compagnons",
-    lieuPrecise: "118 Rue de Babylone, 59491 Villeneuve-d'Ascq",
+    location: "Villeneuve d'Ascq (59)",
+    lieuPrecise: "Maison des Compagnons - 118 Rue de Babylone, 59491 Villeneuve-d'Ascq",
     description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
     tarif: "€",
-    logoEvenement: "https://lh3.googleusercontent.com/d/1IjL1ZKiyo1xl-_9LhsQrc8437TcZiKiv",
+    logoEvenement: "https://lh3.googleusercontent.com/d/1IjL1ZKiyo1xl-_9LhsQrc8437TcZiKiv", // Géré comme une URL image
     boutons: [
       { label: "Billetterie", url: "" },
       { label: "Événement Facebook", url: "" },
@@ -182,11 +118,11 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Décembre",
     title: "Le MoederBal du dimanche",
     location: "Halluin (59)",
-    lieuPrecise: "A définir",
+    lieuPrecise: "À définir",
     description: "4 fois par an le MoederBal propose de découvrir sur scène et sur la piste 3 groupes.",
     estPublic: true,
     tarif: "6€",
-    logoEvenement: "💃",
+    logoEvenement: "💃", // Géré comme un Emoji standard
     boutons: [
       { label: "Infos événement", url: "https://facebook.com/moederbal.bal/" },
       { label: "Réserver", url: "" },
