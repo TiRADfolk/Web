@@ -166,3 +166,22 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
     photoUrl: "https://lh3.googleusercontent.com/d/1lqwIb3a7Wr2xFjhOuz_PbOVZ2v7feEwy"
   }
 ];
+
+// --- MEDIAS ---
+import { MediaItem } from "./types"; // Assure-toi d'importer le type en haut du fichier
+
+export const MEDIAS: MediaItem[] = [
+  {
+    id: "med-1",
+    titre: "Aperçu de notre répétition publique",
+    type: "video",
+    url: "https://youtube.com/c/tiradfolk",
+    miniature: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000"
+  },
+  {
+    id: "med-2",
+    titre: "Teaser Bal Folk 2026",
+    type: "video",
+    url: "https://youtube.com/c/tiradfolk"
+  }
+];
