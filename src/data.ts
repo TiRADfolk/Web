@@ -1,4 +1,4 @@
-// src/data.ts
+// src/data.ts 
 
 export interface SiteDesign {
   heroBackgroundImage: string;
