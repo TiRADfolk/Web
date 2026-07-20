@@ -76,7 +76,7 @@ T-RAD is une jeune formation née de la rencontre de musiciens issus de groupes,
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
 C'est le début de la route, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
-  image: "https://lh3.googleuserco**ent.com/d/1cYnLvsTnNV1wHLcuZk-G6y**CODJa0Yu"
+  image: "https://lh3.googleusercontent.com/d/1cYnLvsTnNV1wHLcuZk-G6y1-CODJa0Yu"
 };
 
 // ============================================================================
