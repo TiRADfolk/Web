@@ -1,4 +1,4 @@
-// src/app/agenda/page.tsx 
+// src/app/agenda/page.tsx
 
 import Link from "next/link";
 import { PROCHAINES_DATES, EvenementAgenda } from "../../data";
@@ -7,6 +7,7 @@ export default function AgendaPage() {
   const renderBadgeTarif = (tarif: boolean | string) => {
     if (tarif === "non" || tarif === false) return "🎁 Gratuit";
     if (tarif === "oui" || tarif === true) return "🎟️ Payant";
+    if (!tarif || tarif.toString().trim() === "") return "";
     return `🎟️ ${tarif}`;
   };
 
@@ -17,7 +18,6 @@ export default function AgendaPage() {
           ← Retour à l'accueil
         </Link>
 
-        {/* Titre */}
         <h1 className="text-4xl font-serif font-extrabold text-red-900 mb-2">
           Agenda Complet
         </h1>
@@ -34,6 +34,8 @@ export default function AgendaPage() {
                 bouton.url.trim() !== ""
             );
 
+            const badgeTarif = renderBadgeTarif(evt.tarif);
+
             return (
               <div
                 key={evt.id}
@@ -48,12 +50,19 @@ export default function AgendaPage() {
                 <div className="flex-1">
                   <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-amber-600 uppercase mb-1">
                     <span>{evt.date}</span>
+
                     <span>•</span>
+
                     <span>{evt.estPublic ? "Public" : "Privé"}</span>
-                    <span>•</span>
-                    <span className="text-stone-700 bg-stone-100 px-2 py-0.5 rounded-full">
-                      {renderBadgeTarif(evt.tarif)}
-                    </span>
+
+                    {badgeTarif && (
+                      <>
+                        <span>•</span>
+                        <span className="text-stone-700 bg-stone-100 px-2 py-0.5 rounded-full">
+                          {badgeTarif}
+                        </span>
+                      </>
+                    )}
                   </div>
 
                   <h2 className="text-xl font-bold font-serif text-stone-800">
@@ -70,7 +79,6 @@ export default function AgendaPage() {
                     </p>
                   )}
 
-                  {/* Boutons événements */}
                   {boutonsVisibles.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
                       {boutonsVisibles.map((bouton, index) => (
