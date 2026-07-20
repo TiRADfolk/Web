@@ -14,7 +14,9 @@ export default function AgendaPage() {
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
-        /
+        
+        {/* Correction du lien de retour */}
+        <Link href="/" className="text-amber-600 hover:underline inline-block mb-6">
           ← Retour à l'accueil
         </Link>
 
@@ -81,10 +83,17 @@ export default function AgendaPage() {
                     </p>
                   )}
 
+                  {/* Correction de la boucle des boutons */}
                   {boutonsVisibles.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
                       {boutonsVisibles.map((bouton, index) => (
-                        {bouton.url}
+                        <a
+                          key={index}
+                          href={bouton.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-2 bg-amber-500 text-white text-sm font-medium rounded-xl hover:bg-amber-600 transition"
+                        >
                           {bouton.label}
                         </a>
                       ))}
