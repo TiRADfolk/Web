@@ -1,7 +1,8 @@
 // src/app/page.tsx
 
 import Link from 'next/link';
-import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO, EvenementAgenda } from '../data';
+import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO } from '../data';
+import { EvenementAgenda } from '../types'; // Import du type depuis le bon fichier
 
 export default function HomePage() {
   const aUneImageDeFond =
@@ -16,6 +17,11 @@ export default function HomePage() {
       return <span className="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">🎟️ €</span>;
     }
     return <span className="bg-red-100 text-red-800 text-[10px] font-bold px-2 py-0.5 rounded-full">🎟️ {tarif}</span>;
+  };
+
+  // Fonction pour détecter si le logo est une URL ou un Emoji
+  const isImageUrl = (url: string) => {
+    return url.startsWith("http") || url.startsWith("/");
   };
 
   return (
@@ -63,7 +69,6 @@ export default function HomePage() {
             <div className="flex-1 text-center md:text-left">
               <span className="bg-red-700 text-white text-xs uppercase font-extrabold px-2.5 py-1 rounded-md">News</span>
               <h2 className="text-2xl font-serif font-bold text-red-900 mt-2 mb-2">{NEWS_INFO.titre}</h2>
-              {/* CORRECTION ICI : Ajout de whitespace-pre-line pour le pavé de News */}
               <p className="text-stone-700 text-base mb-4 whitespace-pre-line">{NEWS_INFO.description}</p>
               {NEWS_INFO.lien && <a href={NEWS_INFO.lien} target="_blank" rel="noopener noreferrer" className="inline-block text-sm font-bold text-amber-700 hover:underline">En savoir plus →</a>}
             </div>
@@ -74,7 +79,6 @@ export default function HomePage() {
       {/* QUI SOMMES-NOUS */}
       <section className="max-w-4xl mx-auto py-12 px-6 text-center">
         <h2 className="text-3xl font-serif font-bold text-red-900 mb-4">Qui sommes-nous ?</h2>
-        {/* CORRECTION ICI : Ajout de whitespace-pre-line pour le pavé de description d'accueil */}
         <p className="text-lg text-stone-700 leading-relaxed whitespace-pre-line">{SITE_INFOS.descriptionLongue}</p>
       </section>
 
@@ -86,7 +90,22 @@ export default function HomePage() {
             <div className="space-y-6">
               {PROCHAINES_DATES?.slice(0, 3).map((evt: EvenementAgenda) => (
                 <div key={evt.id} className="border-b border-amber-200 pb-5 last:border-none flex gap-4 items-start">
-                  {evt.logoEvenement && <div className="text-2xl p-2 bg-white rounded-lg shadow-sm border border-amber-100 select-none">{evt.logoEvenement}</div>}
+                  
+                  {/* LOGO EVENEMENT COMPATIBLE URL ET EMOJI */}
+                  {evt.logoEvenement && (
+                    <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center bg-white rounded-lg shadow-sm border border-amber-100 overflow-hidden select-none">
+                      {isImageUrl(evt.logoEvenement) ? (
+                        <img 
+                          src={evt.logoEvenement} 
+                          alt="Logo" 
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <span className="text-2xl">{evt.logoEvenement}</span>
+                      )}
+                    </div>
+                  )}
+
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 mb-1">
                       <span className="text-xs font-bold uppercase text-amber-600">{evt.date}</span>
@@ -96,7 +115,19 @@ export default function HomePage() {
                       {renderBadgeTarif(evt.tarif)}
                     </div>
                     <h3 className="text-lg font-bold text-stone-800 font-serif">{evt.title}</h3>
-                    <p className="text-stone-500 text-xs mb-2">📍 {evt.location}</p>
+                    
+                    {/* AFFICHAGE COMBINÉ DU LIEU PRÉCIS ET DE LA LOCALISATION */}
+                    {((evt.location && evt.location.trim() !== "") || (evt.lieuPrecise && evt.lieuPrecise.trim() !== "")) && (
+                      <p className="text-stone-500 text-xs mb-2 flex flex-wrap gap-1 items-center">
+                        <span>📍</span>
+                        {evt.lieuPrecise && (
+                          <span className="font-semibold text-stone-700">{evt.lieuPrecise}</span>
+                        )}
+                        {evt.lieuPrecise && evt.location && <span className="text-stone-400">—</span>}
+                        {evt.location && <span>{evt.location}</span>}
+                      </p>
+                    )}
+
                     {evt.description && <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">{evt.description}</p>}
                   </div>
                 </div>
