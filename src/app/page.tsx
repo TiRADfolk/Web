@@ -1,8 +1,7 @@
 // src/app/page.tsx
-
 import Link from 'next/link';
 import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO } from '../data';
-import { EvenementAgenda } from '../types'; // Import du type depuis le bon fichier
+import { EvenementAgenda } from '../types';
 
 export default function HomePage() {
   const aUneImageDeFond =
@@ -54,9 +53,8 @@ export default function HomePage() {
             <Link href="/presentation" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Présentation</Link>
             <Link href="/activites" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Activités</Link>
             <Link href="/agenda" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Agenda</Link>
-            {SITE_INFOS.lienMedia && (
-              <a href={SITE_INFOS.lienMedia} target="_blank" rel="noopener noreferrer" className="bg-amber-500 text-amber-950 px-5 py-2 rounded-full hover:bg-amber-400 transition text-sm font-bold shadow-md">🎬 Médias</a>
-            )}
+            <Link href="/medias" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">🎬 Médias</Link>
+            <Link href="/contact" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Contact</Link>
           </nav>
         </div>
       </section>
