@@ -53,7 +53,7 @@ export default function HomePage() {
             <Link href="/presentation" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Présentation</Link>
             <Link href="/activites" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Activités</Link>
             <Link href="/agenda" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Agenda</Link>
-            <Link href="/medias" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">🎬 Médias</Link>
+            <Link href="/media" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">🎬 Médias</Link>
             <Link href="/contact" className="bg-white/20 backdrop-blur-sm text-white px-5 py-2 rounded-full border border-white/30 hover:bg-white/30 transition text-sm font-medium">Contact</Link>
           </nav>
         </div>
