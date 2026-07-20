@@ -1,3 +1,5 @@
+// Web/SRC/Types.ts
+
 export interface SiteDesign {
   heroBackgroundImage: string;
   overlayOpacity: string;
