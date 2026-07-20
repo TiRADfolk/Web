@@ -119,7 +119,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   },
   {
     id: "2",
-    date: "Novembre",
+    date: "14 Novembre",
     title: "Grand Bal Folk des Compagnons du Devoir",
     location: "Villeneuve d'Ascq (59)",
     lieuPrecise: "Maison des Compagnons - 118 Rue de Babylone, 59491 Villeneuve-d'Ascq",
