@@ -15,7 +15,7 @@ import {
 export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
-  logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w3000",
+  logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w1000",
 
   descriptionLongue: `T-RAD (prononcez Ti RAD) 
 T-RAD rassemble 3 musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés.
@@ -76,7 +76,7 @@ T-RAD is une jeune formation née de la rencontre de musiciens issus de groupes,
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
 C'est le début de la route, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
-  image: "https://lh3.googleusercontent.com/d/1GhVjVGi1KHbEYaeXsH1qcBiDrG2HW6mG"
+  image: "https://lh3.googleuserco**ent.com/d/1cYnLvsTnNV1wHLcuZk-G6y**CODJa0Yu"
 };
 
 // ============================================================================
@@ -91,8 +91,8 @@ export const ACTIVITES: Activite[] = [
   },
   {
     id: "act-2",
-    titre: "Animations & Ateliers",
-    description: "Initiations aux danses traditionnelles pour petits et grands.",
+    titre: "",
+    description: "",
     image: ""
   }
 ];
