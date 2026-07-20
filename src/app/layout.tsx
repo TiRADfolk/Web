@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 export const metadata: Metadata = {
-  title: 'T-RAD | Groupe de Bal folk',
+  title: 'T-RAD | Bal folk',
   description: 'Musique et bals folks.',
 };
 
