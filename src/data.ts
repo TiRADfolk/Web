@@ -103,7 +103,7 @@ export const ACTIVITES: Activite[] = [
 export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "1",
-    date: "Octobre",
+    date: "25 Octobre",
     title: "La première !!! Répétition Publique",
     location: "Villeneuve d'Ascq",
     lieuPrecise: "La Ferme d'en Haut - 268 rue Jules Guesde, 59650 Villeneuve d'Ascq",
