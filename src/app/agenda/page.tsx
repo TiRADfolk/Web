@@ -1,7 +1,8 @@
 // src/app/agenda/page.tsx
 
 import Link from "next/link";
-import { PROCHAINES_DATES, EvenementAgenda } from "../../data";
+import { PROCHAINES_DATES } from "../../data";
+import { EvenementAgenda } from "../../types"; // Import du type depuis le bon fichier
 
 export default function AgendaPage() {
   const renderBadgeTarif = (tarif: boolean | string) => {
@@ -9,6 +10,11 @@ export default function AgendaPage() {
     if (tarif === "oui" || tarif === true) return "🎟️ Payant";
     if (!tarif || tarif.toString().trim() === "") return "";
     return `🎟️ ${tarif}`;
+  };
+
+  // Fonction pour détecter si le logo est une URL ou un Emoji
+  const isImageUrl = (url: string) => {
+    return url.startsWith("http") || url.startsWith("/");
   };
 
   return (
@@ -42,9 +48,18 @@ export default function AgendaPage() {
                 key={evt.id}
                 className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex gap-4 items-start"
               >
+                {/* Gestion du logo : Image ou Emoji */}
                 {evt.logoEvenement && (
-                  <div className="text-3xl p-3 bg-stone-50 rounded-xl select-none">
-                    {evt.logoEvenement}
+                  <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-stone-50 rounded-xl overflow-hidden select-none">
+                    {isImageUrl(evt.logoEvenement) ? (
+                      <img 
+                        src={evt.logoEvenement} 
+                        alt="Logo" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <span className="text-3xl">{evt.logoEvenement}</span>
+                    )}
                   </div>
                 )}
 
