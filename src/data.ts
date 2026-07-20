@@ -50,6 +50,7 @@ export interface EvenementAgenda {
   date: string;
   title: string;
   location: string;
+  lieuPrecise?: string; // Nouveau champ ajouté ici
   description: string;
   estPublic: boolean;
   tarif: boolean | string;
@@ -125,7 +126,7 @@ T-RAD est une jeune formation née de la rencontre de musiciens issus de groupes
 
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
 
-Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
+Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposing des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
 
 La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
@@ -139,12 +140,6 @@ export const ACTIVITES: Activite[] = [
     titre: "Les Bals Folk",
     description: "3 prestations en préparation d'ici la fin de l'année.",
     image: ""
-  },
-  {
-    id: "act-2",
-    titre: "",
-    description: "",
-    image: ""
   }
 ];
 
@@ -154,24 +149,16 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     id: "1",
     date: "Octobre",
     title: "La première !!! Répétition Publique",
-    location: "Villeneuve d'Ascq - Ferme d'en haut",
+    location: "Villeneuve d'Ascq",
+    lieuPrecise: "Ferme d'en haut",
     description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous !",
     estPublic: true,
     tarif: "non",
     logoEvenement: "🎻",
     boutons: [
-      {
-        label: "Informations",
-        url: ""
-      },
-      {
-        label: "Réserver",
-        url: ""
-      },
-      {
-        label: "Plan d'accès",
-        url: ""
-      }
+      { label: "Informations", url: "" },
+      { label: "Réserver", url: "" },
+      { label: "Plan d'accès", url: "" }
     ]
   },
   {
@@ -179,23 +166,15 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Novembre",
     title: "Grand Bal Folk des Compagnons du Devoir",
     location: "Villeneuve d'Ascq (59)",
+    lieuPrecise: "Maison des Compagnons",
     description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
     tarif: "€",
     logoEvenement: "💃",
     boutons: [
-      {
-        label: "Billetterie",
-        url: ""
-      },
-      {
-        label: "Événement Facebook",
-        url: ""
-      },
-      {
-        label: "Site organisateur",
-        url: ""
-      }
+      { label: "Billetterie", url: "" },
+      { label: "Événement Facebook", url: "" },
+      { label: "Site organisateur", url: "" }
     ]
   },
   {
@@ -203,23 +182,15 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     date: "Décembre",
     title: "Le MoederBal du dimanche",
     location: "Halluin (59)",
+    lieuPrecise: "Dans les Flandres",
     description: "4 fois par an le MoederBal propose de découvrir sur scène et sur la piste 3 groupes.",
     estPublic: true,
     tarif: "6€",
     logoEvenement: "💃",
     boutons: [
-      {
-        label: "Infos événement",
-        url: "https://facebook.com/moederbal.bal/"
-      },
-      {
-        label: "Réserver",
-        url: ""
-      },
-      {
-        label: "Plan d'accès",
-        url: ""
-      }
+      { label: "Infos événement", url: "https://facebook.com/moederbal.bal/" },
+      { label: "Réserver", url: "" },
+      { label: "Plan d'accès", url: "" }
     ]
   }
 ];
