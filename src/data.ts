@@ -1,8 +1,17 @@
 // src/data.ts
 
-import { SiteInfos, NewsItem, Activite, EvenementAgenda, MembreTrombi } from "./types";
+import { 
+  SiteInfos, 
+  NewsItem, 
+  Activite, 
+  EvenementAgenda, 
+  MembreTrombi, 
+  MediaItem 
+} from "./types";
 
-// --- INFOS SITE ---
+// ============================================================================
+// --- INFOS SITE & PRÉSENTATION
+// ============================================================================
 export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
@@ -38,8 +47,7 @@ L'envie de faire danser, de créer de belles rencontres et de partager l'énergi
 
   lienMedia: "https://youtube.com/c/tiradfolk",
 
-// --- PRESENTATION ---
-  
+  // --- PRESENTATION ---
   presentationTitre: "Qui sommes-nous ?",
 
   presentationTexte: `T-RAD (prononcez Ti RAD)
@@ -56,10 +64,9 @@ Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager 
   }
 };
 
-
-
-// --- NEWS ---
-
+// ============================================================================
+// --- NEWS
+// ============================================================================
 export const NEWS_INFO: NewsItem = {
   afficherSurAccueil: true,
   titre: "Un nouveau né !",
@@ -72,7 +79,9 @@ C'est le début de la route, mais l'enthousiasme est immense. De nouveaux morcea
   image: "https://lh3.googleusercontent.com/d/1GhVjVGi1KHbEYaeXsH1qcBiDrG2HW6mG"
 };
 
-// --- ACTIVITÉS ---
+// ============================================================================
+// --- ACTIVITÉS
+// ============================================================================
 export const ACTIVITES: Activite[] = [
   {
     id: "act-1",
@@ -80,17 +89,17 @@ export const ACTIVITES: Activite[] = [
     description: "3 prestations en préparation d'ici la fin de l'année.",
     image: ""
   },
-   {
-    id: "act-1",
-    titre: "Les Bals Folk",
-    description: "3 prestations en préparation d'ici la fin de l'année.",
+  {
+    id: "act-2",
+    titre: "Animations & Ateliers",
+    description: "Initiations aux danses traditionnelles pour petits et grands.",
     image: ""
   }
 ];
 
-
-// --- AGENDA ---
-
+// ============================================================================
+// --- AGENDA
+// ============================================================================
 export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "1",
@@ -101,7 +110,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous !",
     estPublic: true,
     tarif: "non",
-    logoEvenement: "CaféSolidaire", // Géré comme une URL image
+    logoEvenement: "CaféSolidaire",
     boutons: [
       { label: "Informations", url: "https://lafermedenhaut.villeneuvedascq.fr/agenda/831/evenement/77287074/le-bar-associatif-carre-rond" },
       { label: "Réserver", url: "" },
@@ -117,7 +126,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     description: "Grand bal folk annuel organisé par les compagnons.",
     estPublic: true,
     tarif: "€",
-    logoEvenement: "https://lh3.googleusercontent.com/d/1IjL1ZKiyo1xl-_9LhsQrc8437TcZiKiv", // Géré comme une URL image
+    logoEvenement: "https://lh3.googleusercontent.com/d/1IjL1ZKiyo1xl-_9LhsQrc8437TcZiKiv",
     boutons: [
       { label: "Billetterie", url: "" },
       { label: "Événement Facebook", url: "" },
@@ -133,7 +142,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     description: "4 fois par an le MoederBal propose de découvrir sur scène et sur la piste 3 groupes.",
     estPublic: true,
     tarif: "6€",
-    logoEvenement: "💃", // Géré comme un Emoji standard
+    logoEvenement: "💃",
     boutons: [
       { label: "Infos événement", url: "https://facebook.com/moederbal.bal/" },
       { label: "Réserver", url: "" },
@@ -142,7 +151,9 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   }
 ];
 
-// --- TROMBINOSCOPE ---
+// ============================================================================
+// --- TROMBINOSCOPE
+// ============================================================================
 export const TROMBINOSCOPE: MembreTrombi[] = [
   {
     id: "m1",
@@ -167,9 +178,9 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
   }
 ];
 
-// --- MEDIAS ---
-import { MediaItem } from "./types"; // Assure-toi d'importer le type en haut du fichier
-
+// ============================================================================
+// --- MEDIAS
+// ============================================================================
 export const MEDIAS: MediaItem[] = [
   {
     id: "med-1",
