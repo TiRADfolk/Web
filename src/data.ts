@@ -135,7 +135,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
   },
   {
     id: "3",
-    date: "Décembre",
+    date: "6 Décembre",
     title: "Le MoederBal du dimanche",
     location: "Halluin (59)",
     lieuPrecise: "À définir",
