@@ -51,7 +51,7 @@ L'envie de faire danser, de créer de belles rencontres et de partager l'énergi
   presentationTitre: "Qui sommes-nous ?",
 
   presentationTexte: `T-RAD (prononcez Ti RAD)
-C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.
+C'est la rencontre de 3 musiciens d'origines diverses voulant proposer de belles musiques à danser traditionnelles et folk.
 
 Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités.
 Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
@@ -159,7 +159,7 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
     id: "m1",
     nom: "Naomi",
     role: "Flûte traversière, Toy-Piano, Chant",
-    description: "Musicienne accomplie et bourrée de talent, elle vous enchantera de ses melodies",
+    description: "Musicienne accomplie et bourrée de talent, elle vous enchantera de ses mélodies",
     photoUrl: "https://lh3.googleusercontent.com/d/1ag3fc_Xn0Gl2ESWCrbjP7xu0mCiaGDDP"
   },
   {
