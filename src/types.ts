@@ -63,3 +63,10 @@ export interface MembreTrombi {
   description: string;
   photoUrl: string;
 }
+export interface MediaItem {
+  id: string;
+  titre: string;
+  type: 'video' | 'audio' | 'photo';
+  url: string; // Lien YouTube, Soundcloud, Drive, etc.
+  miniature?: string; // Image d'aperçu optionnelle
+}
