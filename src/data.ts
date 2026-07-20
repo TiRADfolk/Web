@@ -6,12 +6,12 @@ import { SiteInfos, NewsItem, Activite, EvenementAgenda, MembreTrombi } from "./
 export const SITE_INFOS: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
-  logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w2000",
+  logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w3000",
 
   descriptionLongue: `T-RAD (prononcez Ti RAD) 
 Né il y a à peine un semestre, T-RAD rassemble des musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés.
 
-Ce qui nous unit ?
+                                        Ce qui nous unit ?
 L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.`,
 
   emailContact: "tiradfolk@gmail.com",
@@ -43,6 +43,7 @@ L'envie de faire danser, de créer de belles rencontres et de partager l'énergi
 c'est tout nouveau !!! C'est la rencontre de 3 musiciens d'origine diverses voulant proposer de belles musiques à danser traditionnelles et folk.
 
 Inspiré par les collectifs de musiques à danser, le groupe propose un répertoire cadencé, oscillant entre folk récent et airs traditionnels revisités.
+Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
 
 Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager entre mélodies envoûtantes et rythmiques énergiques !`,
 
@@ -59,12 +60,8 @@ export const NEWS_INFO: NewsItem = {
   description: `À peine six mois d'existence et déjà la tête pleine de projets !
 
 T-RAD is une jeune formation née de la rencontre de musiciens issus de groupes, de styles et d'expériences variés.
-
 Chacun apporte sa couleur, son énergie et sa sensibilité pour construire un univers commun : une musique vivante, authentique et pensée pour la danse.
-
-Notre ambition est simple : faire circuler l'émotion, l'énergie et le plaisir du bal, en proposant des reprises choisies et des arrangements soignés avec des musiques qui donnent envie de rejoindre la danse dès les premières notes.
-
-La route est encore jeune, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
+C'est le début de la route, mais l'enthousiasme est immense. De nouveaux morceaux, de nouveaux bals et de nouvelles rencontres sont déjà en préparation.`,
   lien: "",
   image: "https://lh3.googleusercontent.com/d/1GhVjVGi1KHbEYaeXsH1qcBiDrG2HW6mG"
 };
