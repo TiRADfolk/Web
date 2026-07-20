@@ -26,7 +26,7 @@ export default function AgendaPage() {
 
         <div className="space-y-6">
           {PROCHAINES_DATES.map((evt: EvenementAgenda) => {
-            const boutonsVisibles = evt.boutons.filter(
+            const boutonsVisibles = (evt.boutons ?? []).filter(
               (bouton) =>
                 bouton.label &&
                 bouton.label.trim() !== "" &&
@@ -69,9 +69,11 @@ export default function AgendaPage() {
                     {evt.title}
                   </h2>
 
-                  <p className="text-stone-500 text-sm mb-2">
-                    📍 {evt.location}
-                  </p>
+                  {evt.location && evt.location.trim() !== "" && (
+                    <p className="text-stone-500 text-sm mb-2">
+                      📍 {evt.location}
+                    </p>
+                  )}
 
                   {evt.description && evt.description.trim() !== "" && (
                     <p className="text-stone-600 text-sm leading-relaxed">
