@@ -15,7 +15,6 @@ export default function AgendaPage() {
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
         
-        {/* Correction du lien de retour */}
         <Link href="/" className="text-amber-600 hover:underline inline-block mb-6">
           ← Retour à l'accueil
         </Link>
@@ -71,9 +70,15 @@ export default function AgendaPage() {
                     {evt.title}
                   </h2>
 
-                  {evt.location && evt.location.trim() !== "" && (
-                    <p className="text-stone-500 text-sm mb-2">
-                      📍 {evt.location}
+                  {/* Affichage combiné de lieuPrecise et location */}
+                  {((evt.location && evt.location.trim() !== "") || (evt.lieuPrecise && evt.lieuPrecise.trim() !== "")) && (
+                    <p className="text-stone-500 text-sm mb-2 flex flex-wrap gap-1 items-center">
+                      <span>📍</span>
+                      {evt.lieuPrecise && (
+                        <span className="font-semibold text-stone-700">{evt.lieuPrecise}</span>
+                      )}
+                      {evt.lieuPrecise && evt.location && <span className="text-stone-400">—</span>}
+                      {evt.location && <span>{evt.location}</span>}
                     </p>
                   )}
 
@@ -83,7 +88,6 @@ export default function AgendaPage() {
                     </p>
                   )}
 
-                  {/* Correction de la boucle des boutons */}
                   {boutonsVisibles.length > 0 && (
                     <div className="flex flex-wrap gap-2 mt-4">
                       {boutonsVisibles.map((bouton, index) => (
