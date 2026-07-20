@@ -14,6 +14,7 @@ Né il y a à peine un semestre, T-RAD rassemble des musiciens venus d'horizons 
                                         Ce qui nous unit ?
 L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.`,
 
+  // --- CONTACT ---
   emailContact: "tiradfolk@gmail.com",
   telephone: "",
 
@@ -37,6 +38,8 @@ L'envie de faire danser, de créer de belles rencontres et de partager l'énergi
 
   lienMedia: "https://youtube.com/c/tiradfolk",
 
+// --- PRESENTATION ---
+  
   presentationTitre: "Qui sommes-nous ?",
 
   presentationTexte: `T-RAD (prononcez Ti RAD)
@@ -53,7 +56,10 @@ Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager 
   }
 };
 
+
+
 // --- NEWS ---
+
 export const NEWS_INFO: NewsItem = {
   afficherSurAccueil: true,
   titre: "Un nouveau né !",
@@ -73,10 +79,18 @@ export const ACTIVITES: Activite[] = [
     titre: "Les Bals Folk",
     description: "3 prestations en préparation d'ici la fin de l'année.",
     image: ""
+  },
+   {
+    id: "act-1",
+    titre: "Les Bals Folk",
+    description: "3 prestations en préparation d'ici la fin de l'année.",
+    image: ""
   }
 ];
 
+
 // --- AGENDA ---
+
 export const PROCHAINES_DATES: EvenementAgenda[] = [
   {
     id: "1",
@@ -87,7 +101,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     description: "Venez découvrir nos morceaux en avant-première lors de cette répétition ouverte à tous !",
     estPublic: true,
     tarif: "non",
-    logoEvenement: "https://lh3.googleusercontent.com/d/1NiX6g-e1Zq2KeqgMl2vbYEQPVNJ-Gr7u", // Géré comme une URL image
+    logoEvenement: "CaféSolidaire", // Géré comme une URL image
     boutons: [
       { label: "Informations", url: "https://lafermedenhaut.villeneuvedascq.fr/agenda/831/evenement/77287074/le-bar-associatif-carre-rond" },
       { label: "Réserver", url: "" },
