@@ -7,6 +7,12 @@ export default async function HomePage() {
   const SITE_INFOS = await getSiteInfos();
   const PROCHAINES_DATES = await getProchainesDates();
 
+  // Utilisation sécurisée pour éviter les erreurs de typage TypeScript
+  const descriptionAffichee = 
+    (SITE_INFOS as any).descriptionCourte || 
+    SITE_INFOS.descriptionLongue || 
+    "Bienvenue sur notre site !";
+
   // On récupère uniquement les 3 prochains événements pour la page d'accueil
   const apercuDates = PROCHAINES_DATES.slice(0, 3);
 
@@ -19,7 +25,7 @@ export default async function HomePage() {
             {SITE_INFOS.nom}
           </h1>
           <p className="text-xl md:text-2xl font-light text-amber-200 max-w-2xl mx-auto mb-8">
-            {SITE_INFOS.descriptionCourte}
+            {descriptionAffichee}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
@@ -46,7 +52,7 @@ export default async function HomePage() {
           </h2>
           <div className="w-16 h-1 bg-amber-500 mx-auto mb-6 rounded"></div>
           <p className="text-stone-700 text-lg leading-relaxed max-w-3xl mx-auto mb-6 line-clamp-4 whitespace-pre-line">
-            {SITE_INFOS.descriptionLongue || SITE_INFOS.presentationTexte}
+            {SITE_INFOS.presentationTexte || SITE_INFOS.descriptionLongue}
           </p>
           <Link
             href="/presentation"
