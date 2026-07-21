@@ -1,10 +1,13 @@
 // src/app/agenda/page.tsx
 
 import Link from "next/link";
-import { PROCHAINES_DATES } from "../../data";
-import { EvenementAgenda } from "../../types"; // Import du type depuis le bon fichier
+import { getProchainesDates } from "../../data";
+import { EvenementAgenda } from "../../types";
 
-export default function AgendaPage() {
+export default async function AgendaPage() {
+  // Récupération dynamique des dates depuis Google Sheets
+  const PROCHAINES_DATES = await getProchainesDates();
+
   const renderBadgeTarif = (tarif: boolean | string) => {
     if (tarif === "non" || tarif === false) return "🎁 Gratuit";
     if (tarif === "oui" || tarif === true) return "🎟️ Payant";
@@ -98,7 +101,7 @@ export default function AgendaPage() {
                   )}
 
                   {evt.description && evt.description.trim() !== "" && (
-                    <p className="text-stone-600 text-sm leading-relaxed">
+                    <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">
                       {evt.description}
                     </p>
                   )}
