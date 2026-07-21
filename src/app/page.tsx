@@ -1,9 +1,14 @@
 // src/app/page.tsx
 import Link from 'next/link';
-import { SITE_INFOS, PROCHAINES_DATES, NEWS_INFO } from '../data';
+import { getSiteInfos, getProchainesDates, getNewsInfo } from '../data';
 import { EvenementAgenda } from '../types';
 
-export default function HomePage() {
+export default async function HomePage() {
+  // Récupération dynamique depuis Google Sheets (ou Fallback si erreur)
+  const SITE_INFOS = await getSiteInfos();
+  const PROCHAINES_DATES = await getProchainesDates();
+  const NEWS_INFO = await getNewsInfo();
+
   const aUneImageDeFond =
     SITE_INFOS.design?.heroBackgroundImage &&
     SITE_INFOS.design.heroBackgroundImage.trim() !== "";
