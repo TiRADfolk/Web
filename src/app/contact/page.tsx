@@ -1,13 +1,16 @@
 // src/app/contact/page.tsx
 import Link from 'next/link';
-import { SITE_INFOS } from '../../data';
+import { getSiteInfos } from '../../data';
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  // Récupération dynamique depuis Google Sheets
+  const SITE_INFOS = await getSiteInfos();
+
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
         
-        {/* Lien de retour à l'accueil ajouté pour la cohérence */}
+        {/* Lien de retour à l'accueil */}
         <Link href="/" className="text-amber-600 hover:underline inline-block mb-6">
           ← Retour à l'accueil
         </Link>
@@ -19,7 +22,7 @@ export default function ContactPage() {
           <div className="w-16 h-1 bg-amber-500 mx-auto mb-8 rounded"></div>
           
           <p className="text-lg text-stone-600 max-w-xl mx-auto mb-12">
-            Vous souhaitez programmer le groupe **{SITE_INFOS.nom}** pour un bal ou un événement privé ? 
+            Vous souhaitez programmer le groupe <strong>{SITE_INFOS.nom}</strong> pour un bal ou un événement privé ? 
             Discutons ensemble de votre projet.
           </p>
           
@@ -48,27 +51,29 @@ export default function ContactPage() {
           </div>
 
           {/* Réseaux Sociaux */}
-          <div className="max-w-md mx-auto">
-            <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-4">
-              Retrouvez-nous sur les réseaux
-            </p>
-            <div className="flex justify-center items-center gap-8">
-              {SITE_INFOS.reseauxSociaux.map((res, idx) => (
-                <a 
-                  key={idx} 
-                  href={res.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-1 text-stone-600 hover:text-amber-600 font-medium transition-colors"
-                >
-                  <span className="text-2xl bg-stone-100 p-3 rounded-full hover:bg-amber-50 transition-colors">
-                    {res.icone}
-                  </span>
-                  <span className="text-sm">{res.nom}</span>
-                </a>
-              ))}
+          {SITE_INFOS.reseauxSociaux && SITE_INFOS.reseauxSociaux.length > 0 && (
+            <div className="max-w-md mx-auto">
+              <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-4">
+                Retrouvez-nous sur les réseaux
+              </p>
+              <div className="flex justify-center items-center gap-8">
+                {SITE_INFOS.reseauxSociaux.map((res, idx) => (
+                  <a 
+                    key={idx} 
+                    href={res.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-1 text-stone-600 hover:text-amber-600 font-medium transition-colors"
+                  >
+                    <span className="text-2xl bg-stone-100 p-3 rounded-full hover:bg-amber-50 transition-colors">
+                      {res.icone}
+                    </span>
+                    <span className="text-sm">{res.nom}</span>
+                  </a>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
 
       </div>
