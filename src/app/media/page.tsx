@@ -1,15 +1,18 @@
-// app/media/page.tsx
-
+// src/app/media/page.tsx
 'use client';
+
 import { useState } from 'react';
 import Link from 'next/link';
-import { MEDIAS } from '../../data';
 import { MediaItem } from '../../types';
 
-export default function MediaPage() {
+interface MediaContentProps {
+  initialMedias: MediaItem[];
+}
+
+function MediaContent({ initialMedias }: MediaContentProps) {
   const [tab, setTab] = useState<'video' | 'audio' | 'photo'>('video');
 
-  const mediasFiltres = MEDIAS.filter((item) => item.type === tab);
+  const mediasFiltres = initialMedias.filter((item) => item.type === tab);
 
   return (
     <div className="bg-stone-50 min-h-screen py-12 px-4 text-stone-900">
@@ -69,7 +72,7 @@ export default function MediaPage() {
         {tab === 'audio' && (
           <div className="bg-white rounded-2xl shadow-sm border border-stone-100 p-6 space-y-4">
             {mediasFiltres.map((item: MediaItem) => (
-              <a key={item.id} href={item.url} className="flex items-center justify-between p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition block">
+              <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-between p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition block">
                 <div className="flex items-center space-x-4">
                   <div className="w-10 h-10 bg-red-900 rounded-full flex items-center justify-center text-white">
                     <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20"><path d="M6 4l10 6-10 6V4z"/></svg>
@@ -100,4 +103,12 @@ export default function MediaPage() {
       </div>
     </div>
   );
+}
+
+// Wrapper Serveur Async pour injecter les données dynamique Google Sheets
+import { getMedias } from '../../data';
+
+export default async function MediaPage() {
+  const medias = await getMedias();
+  return <MediaContent initialMedias={medias} />;
 }
