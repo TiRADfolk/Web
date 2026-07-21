@@ -1,9 +1,13 @@
 // src/app/presentation/page.tsx
 import React from 'react';
 import Link from 'next/link';
-import { SITE_INFOS, TROMBINOSCOPE } from '../../data';
+import { getSiteInfos, getTrombinoscope } from '../../data';
 
-export default function PresentationPage() {
+export default async function PresentationPage() {
+  // Récupération dynamique depuis Google Sheets
+  const SITE_INFOS = await getSiteInfos();
+  const TROMBINOSCOPE = await getTrombinoscope();
+
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
@@ -32,7 +36,7 @@ export default function PresentationPage() {
               {TROMBINOSCOPE.map((membre) => (
                 <div key={membre.id} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col justify-between">
                   <div>
-                    {/* Bloc Image Rectangulaire comme avant */}
+                    {/* Bloc Image Rectangulaire */}
                     {membre.photoUrl && membre.photoUrl.trim() !== "" && membre.photoUrl !== "..." ? (
                       <img 
                         src={membre.photoUrl} 
