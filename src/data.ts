@@ -9,10 +9,19 @@ import {
   MediaItem 
 } from "./types";
 
+import {
+  getSiteInfos as fetchSiteInfos,
+  getNewsInfo as fetchNewsInfo,
+  getActivites as fetchActivites,
+  getProchainesDates as fetchProchainesDates,
+  getTrombinoscope as fetchTrombinoscope,
+  getMedias as fetchMedias
+} from "./lib/sheets";
+
 // ============================================================================
-// --- INFOS SITE & PRÉSENTATION
+// --- DONNÉES DE SECOURS (FALLBACK LOCAL)
 // ============================================================================
-export const SITE_INFOS: SiteInfos = {
+export const SITE_INFOS_FALLBACK: SiteInfos = {
   nom: "T-RAD",
   slogan: "La chaleur du Folk, le souffle de la danse",
   logo: "https://drive.google.com/thumbnail?id=1PBXFwOUp3Fn4dbYAlsimg_C_cUyFuBfZ&sz=w1000",
@@ -20,34 +29,19 @@ export const SITE_INFOS: SiteInfos = {
   descriptionLongue: `T-RAD (prononcez Ti RAD) 
 T-RAD rassemble 3 musiciens venus d'horizons différents, de parcours variés et d'univers musicaux parfois éloignés.
 
-                                        Ce qui nous unit ?
+Ce qui nous unit ?
 L'envie de faire danser, de créer de belles rencontres et de partager l'énergie unique des bals folk.`,
 
-  // --- CONTACT ---
   emailContact: "tiradfolk@gmail.com",
   telephone: "",
 
   reseauxSociaux: [
-    {
-      nom: "Bientôt Facebook",
-      url: "https://facebook.com/tiradfolk",
-      icone: "👥"
-    },
-    {
-      nom: "Bientôt Instagram",
-      url: "https://instagram.com/tiradfolk",
-      icone: "📸"
-    },
-    {
-      nom: "Bientôt YouTube",
-      url: "https://youtube.com/c/tiradfolk",
-      icone: "📺"
-    }
+    { nom: "Bientôt Facebook", url: "https://facebook.com/tiradfolk", icone: "👥" },
+    { nom: "Bientôt Instagram", url: "https://instagram.com/tiradfolk", icone: "📸" },
+    { nom: "Bientôt YouTube", url: "https://youtube.com/c/tiradfolk", icone: "📺" }
   ],
 
   lienMedia: "https://youtube.com/c/tiradfolk",
-
-  // --- PRESENTATION ---
   presentationTitre: "Qui sommes-nous ?",
 
   presentationTexte: `T-RAD (prononcez Ti RAD)
@@ -64,10 +58,7 @@ Que vous soyez danseur chevronné ou simple auditeur, préparez-vous à voyager 
   }
 };
 
-// ============================================================================
-// --- NEWS
-// ============================================================================
-export const NEWS_INFO: NewsItem = {
+export const NEWS_INFO_FALLBACK: NewsItem = {
   afficherSurAccueil: true,
   titre: "Un nouveau né !",
   description: `À peine six mois d'existence et déjà la tête pleine de projets !
@@ -79,28 +70,16 @@ C'est le début de la route, mais l'enthousiasme est immense. De nouveaux morcea
   image: "https://lh3.googleusercontent.com/d/1cYnLvsTnNV1wHLcuZk-G6y1-CODJa0Yu"
 };
 
-// ============================================================================
-// --- ACTIVITÉS
-// ============================================================================
-export const ACTIVITES: Activite[] = [
+export const ACTIVITES_FALLBACK: Activite[] = [
   {
     id: "act-1",
     titre: "Les Bals Folk",
     description: "3 prestations en préparation d'ici la fin de l'année.",
     image: ""
-  },
-  {
-    id: "act-2",
-    titre: "",
-    description: "",
-    image: ""
   }
 ];
 
-// ============================================================================
-// --- AGENDA
-// ============================================================================
-export const PROCHAINES_DATES: EvenementAgenda[] = [
+export const PROCHAINES_DATES_FALLBACK: EvenementAgenda[] = [
   {
     id: "1",
     date: "25 Octobre",
@@ -112,9 +91,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     tarif: "non",
     logoEvenement: "CaféSolidaire",
     boutons: [
-      { label: "Informations", url: "https://lafermedenhaut.villeneuvedascq.fr/agenda/831/evenement/77287074/le-bar-associatif-carre-rond" },
-      { label: "Réserver", url: "" },
-      { label: "Plan d'accès", url: "" }
+      { label: "Informations", url: "https://lafermedenhaut.villeneuvedascq.fr/agenda/831/evenement/77287074/le-bar-associatif-carre-rond" }
     ]
   },
   {
@@ -127,11 +104,7 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     estPublic: true,
     tarif: "€",
     logoEvenement: "https://lh3.googleusercontent.com/d/1IjL1ZKiyo1xl-_9LhsQrc8437TcZiKiv",
-    boutons: [
-      { label: "Billetterie", url: "" },
-      { label: "Événement Facebook", url: "" },
-      { label: "Site organisateur", url: "" }
-    ]
+    boutons: []
   },
   {
     id: "3",
@@ -144,17 +117,12 @@ export const PROCHAINES_DATES: EvenementAgenda[] = [
     tarif: "6€",
     logoEvenement: "💃",
     boutons: [
-      { label: "Infos événement", url: "https://facebook.com/moederbal.bal/" },
-      { label: "Réserver", url: "" },
-      { label: "Plan d'accès", url: "" }
+      { label: "Infos événement", url: "https://facebook.com/moederbal.bal/" }
     ]
   }
 ];
 
-// ============================================================================
-// --- TROMBINOSCOPE
-// ============================================================================
-export const TROMBINOSCOPE: MembreTrombi[] = [
+export const TROMBINOSCOPE_FALLBACK: MembreTrombi[] = [
   {
     id: "m1",
     nom: "Naomi",
@@ -178,10 +146,7 @@ export const TROMBINOSCOPE: MembreTrombi[] = [
   }
 ];
 
-// ============================================================================
-// --- MEDIAS
-// ============================================================================
-export const MEDIAS: MediaItem[] = [
+export const MEDIAS_FALLBACK: MediaItem[] = [
   {
     id: "med-1",
     titre: "Aperçu de notre répétition publique",
@@ -196,3 +161,44 @@ export const MEDIAS: MediaItem[] = [
     url: "https://youtube.com/c/tiradfolk"
   }
 ];
+
+// ============================================================================
+// --- FONCTIONS DE RÉCUPÉRATION AVEC FALLBACK
+// ============================================================================
+export async function getSiteInfos(): Promise<SiteInfos> {
+  const data = await fetchSiteInfos();
+  return data.nom ? (data as SiteInfos) : SITE_INFOS_FALLBACK;
+}
+
+export async function getNewsInfo(): Promise<NewsItem> {
+  const data = await fetchNewsInfo();
+  return data ? (data as NewsItem) : NEWS_INFO_FALLBACK;
+}
+
+export async function getActivites(): Promise<Activite[]> {
+  const data = await fetchActivites();
+  return data.length > 0 ? (data as Activite[]) : ACTIVITES_FALLBACK;
+}
+
+export async function getProchainesDates(): Promise<EvenementAgenda[]> {
+  const data = await fetchProchainesDates();
+  return data.length > 0 ? (data as EvenementAgenda[]) : PROCHAINES_DATES_FALLBACK;
+}
+
+export async function getTrombinoscope(): Promise<MembreTrombi[]> {
+  const data = await fetchTrombinoscope();
+  return data.length > 0 ? (data as MembreTrombi[]) : TROMBINOSCOPE_FALLBACK;
+}
+
+export async function getMedias(): Promise<MediaItem[]> {
+  const data = await fetchMedias();
+  return data.length > 0 ? (data as MediaItem[]) : MEDIAS_FALLBACK;
+}
+
+// Compatibilité temporaire pour ne pas briser l'existant
+export const SITE_INFOS = SITE_INFOS_FALLBACK;
+export const NEWS_INFO = NEWS_INFO_FALLBACK;
+export const ACTIVITES = ACTIVITES_FALLBACK;
+export const PROCHAINES_DATES = PROCHAINES_DATES_FALLBACK;
+export const TROMBINOSCOPE = TROMBINOSCOPE_FALLBACK;
+export const MEDIAS = MEDIAS_FALLBACK;
