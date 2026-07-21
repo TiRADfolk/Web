@@ -1,10 +1,13 @@
 // src/app/activites/page.tsx
 
 import Link from 'next/link';
-import { ACTIVITES } from '../../data';
-import { Activite } from '../../types'; // Import du type depuis le bon fichier
+import { getActivites } from '../../data';
+import { Activite } from '../../types';
 
-export default function ActivitesPage() {
+export default async function ActivitesPage() {
+  // Récupération dynamique depuis Google Sheets
+  const ACTIVITES = await getActivites();
+
   return (
     <div className="bg-stone-50 min-h-screen text-stone-900 py-12 px-6">
       <div className="max-w-4xl mx-auto">
@@ -38,7 +41,7 @@ export default function ActivitesPage() {
                 <h2 className="text-xl font-bold font-serif text-stone-800 mb-2">
                   {act.titre}
                 </h2>
-                <p className="text-stone-600 text-sm leading-relaxed">
+                <p className="text-stone-600 text-sm leading-relaxed whitespace-pre-line">
                   {act.description}
                 </p>
               </div>
