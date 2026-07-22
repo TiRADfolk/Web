@@ -1,7 +1,9 @@
 // src/app/presentation/page.tsx
+
 import React from 'react';
 import Link from 'next/link';
 import { getSiteInfos, getTrombinoscope } from '../../data';
+import { MembreTrombinoscope } from '../../types';
 
 export default async function PresentationPage() {
   // Récupération dynamique depuis Google Sheets
@@ -33,7 +35,7 @@ export default async function PresentationPage() {
           <div>
             <h2 className="text-2xl font-serif font-bold text-stone-800 mb-6">Les membres du groupe</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-              {TROMBINOSCOPE.map((membre) => (
+              {TROMBINOSCOPE.map((membre: MembreTrombinoscope) => (
                 <div key={membre.id} className="bg-white rounded-2xl shadow-sm border border-stone-100 overflow-hidden flex flex-col justify-between">
                   <div>
                     {/* Bloc Image Rectangulaire */}
