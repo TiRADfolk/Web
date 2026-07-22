@@ -25,7 +25,7 @@ export interface Activite {
   image?: string;
 }
 
-// 3. Médias (Vidéo, Audio, Photo)
+// 3. Médias
 export interface MediaItem {
   id: string;
   titre: string;
@@ -44,7 +44,7 @@ export interface NewsItem {
   lien?: string;
 }
 
-// 5. Trombinoscope / Membres du groupe
+// 5. Trombinoscope / Membres
 export interface MembreTrombinoscope {
   id: string;
   nom: string;
@@ -53,13 +53,14 @@ export interface MembreTrombinoscope {
   photoUrl?: string;
 }
 
-// Alias de sécurité pour couvrir les deux nommages (MembreTrombi et MembreTrombinoscope)
+// Alias de sécurité
 export type MembreTrombi = MembreTrombinoscope;
 
-// 6. Informations Générales du Site
+// 6. Infos générales du site
 export interface SiteInfos {
   nom: string;
   slogan?: string;
+  logo?: string;
   descriptionLongue?: string;
   emailContact?: string;
   telephone?: string;
