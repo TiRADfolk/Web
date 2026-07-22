@@ -1,6 +1,13 @@
 // src/data.ts
 
-import { EvenementAgenda, Activite, MediaItem, SiteInfos } from './types';
+import { 
+  EvenementAgenda, 
+  Activite, 
+  MediaItem, 
+  SiteInfos, 
+  NewsItem, 
+  MembreTrombi 
+} from './types';
 
 // Identifiant du Google Sheet (variable Vercel avec fallback)
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID || "1zpJNcWwLhaYSJTvQg5lYlpd_TdehGykxjLG85r74oGk";
@@ -69,7 +76,6 @@ export async function getSiteInfos(): Promise<SiteInfos> {
   
   const mapData: Record<string, string> = {};
   rows.forEach((row) => {
-    // row[1] = Cle, row[2] = Valeur (car row[0] est 'Infos_Site')
     const key = row[1] || row[0];
     const val = row[2] || row[1];
     if (key && val) {
@@ -79,24 +85,31 @@ export async function getSiteInfos(): Promise<SiteInfos> {
 
   return {
     nom: mapData['nom'] || "T-RAD",
+    slogan: mapData['slogan'] || "",
+    logo: mapData['logo'] || "",
     descriptionLongue: mapData['descriptionlongue'] || mapData['description'] || "Groupe de musique trad & bal folk.",
     presentationTitre: mapData['presentationtitre'] || "Qui sommes-nous ?",
     presentationTexte: mapData['presentationtexte'] || "",
     emailContact: mapData['emailcontact'] || "contact@trad.fr",
     telephone: mapData['telephone'] || "",
+    lienMedia: mapData['lienmedia'] || "",
     reseauxSociaux: [
       { nom: 'Facebook', url: mapData['facebook'] || '', icone: '🌐' },
       { nom: 'Instagram', url: mapData['instagram'] || '', icone: '📷' },
       { nom: 'YouTube', url: mapData['youtube'] || '', icone: '▶️' },
     ].filter((res) => res.url && res.url !== ''),
-  } as SiteInfos;
+    design: {
+      heroBackgroundImage: mapData['herobackgroundimage'] || "",
+      overlayOpacity: mapData['overlayopacity'] || "bg-black/60",
+    }
+  };
 }
 
 /* ============================================================================
  * 2. NEWS 
  * Structure Sheet : [News] | id(row[1]) | afficherSurAccueil(row[2]) | titre(row[3]) | description(row[4]) | image(row[5]) | lien(row[6])
  * ============================================================================ */
-export async function getNewsInfo(): Promise<any[]> {
+export async function getNewsInfo(): Promise<NewsItem[]> {
   const rows = await fetchCSV(GID_NEWS); 
 
   if (rows.length < 2) return [];
@@ -162,7 +175,7 @@ export async function getProchainesDates(): Promise<EvenementAgenda[]> {
  * 5. TROMBINOSCOPE 
  * Structure Sheet : [Trombinoscope] | id(row[1]) | nom(row[2]) | role(row[3]) | description(row[4]) | photoUrl(row[5])
  * ============================================================================ */
-export async function getTrombinoscope(): Promise<any[]> {
+export async function getTrombinoscope(): Promise<MembreTrombi[]> {
   const rows = await fetchCSV(GID_TROMBINOSCOPE); 
 
   if (rows.length < 2) return [];
