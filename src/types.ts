@@ -1,5 +1,6 @@
 // src/types.ts
 
+// 1. Agenda / Événements
 export interface EvenementAgenda {
   id: string;
   title: string;
@@ -16,6 +17,7 @@ export interface EvenementAgenda {
   }>;
 }
 
+// 2. Activités
 export interface Activite {
   id: string;
   titre: string;
@@ -23,6 +25,7 @@ export interface Activite {
   image?: string;
 }
 
+// 3. Médias (Vidéo, Audio, Photo)
 export interface MediaItem {
   id: string;
   titre: string;
@@ -31,6 +34,17 @@ export interface MediaItem {
   miniature?: string;
 }
 
+// 4. Actualités / News
+export interface NewsItem {
+  id: string;
+  titre: string;
+  date?: string;
+  contenu?: string;
+  image?: string;
+  lien?: string;
+}
+
+// 5. Trombinoscope / Membres du groupe
 export interface MembreTrombinoscope {
   id: string;
   nom: string;
@@ -39,6 +53,10 @@ export interface MembreTrombinoscope {
   photoUrl?: string;
 }
 
+// Alias de sécurité pour couvrir les deux nommages (MembreTrombi et MembreTrombinoscope)
+export type MembreTrombi = MembreTrombinoscope;
+
+// 6. Informations Générales du Site
 export interface SiteInfos {
   nom: string;
   slogan?: string;
