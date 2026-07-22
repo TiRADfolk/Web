@@ -1,4 +1,5 @@
 // src/app/contact/page.tsx
+
 import Link from 'next/link';
 import { getSiteInfos } from '../../data';
 
@@ -11,7 +12,7 @@ export default async function ContactPage() {
       <div className="max-w-4xl mx-auto">
         
         {/* Lien de retour à l'accueil */}
-        <Link href="/" className="text-amber-600 hover:underline inline-block mb-6">
+        <Link href="/" className="text-amber-600 hover:underline inline-block mb-6 text-sm font-medium">
           ← Retour à l'accueil
         </Link>
 
@@ -43,9 +44,12 @@ export default async function ContactPage() {
                 <p className="text-xs uppercase tracking-wider text-stone-400 font-bold mb-2">
                   Nous contacter par téléphone
                 </p>
-                <p className="text-xl font-semibold text-stone-800">
+                <a 
+                  href={`tel:${SITE_INFOS.telephone}`}
+                  className="text-xl font-semibold text-stone-800 hover:text-amber-600 transition-colors inline-block"
+                >
                   {SITE_INFOS.telephone}
-                </p>
+                </a>
               </div>
             )}
           </div>
