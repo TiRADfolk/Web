@@ -1,4 +1,5 @@
-// src/app/page.tsx
+// src/app/page.tsx 
+
 
 import Link from 'next/link';
 import { getSiteInfos, getNews } from '../data';
