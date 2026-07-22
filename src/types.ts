@@ -53,14 +53,15 @@ export interface MembreTrombinoscope {
   photoUrl?: string;
 }
 
-// Alias de sécurité
+// Alias de compatibilité
 export type MembreTrombi = MembreTrombinoscope;
 
-// 6. Infos générales du site
+// 6. Informations Générales du Site
 export interface SiteInfos {
   nom: string;
   slogan?: string;
   logo?: string;
+  lienMedia?: string; // ← Ajouté spécifiquement
   descriptionLongue?: string;
   emailContact?: string;
   telephone?: string;
@@ -71,4 +72,7 @@ export interface SiteInfos {
     url: string;
     icone: string;
   }>;
+  
+  // 🛡️ SÉCURITÉ ANTI-ERREUR : Permet d'accepter toute autre propriété provenant de mapData
+  [key: string]: any; 
 }
