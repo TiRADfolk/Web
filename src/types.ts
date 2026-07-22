@@ -1,8 +1,8 @@
-// Web/SRC/Types.ts
+// src/types.ts
 
 export interface SiteDesign {
-  heroBackgroundImage: string;
-  overlayOpacity: string;
+  heroBackgroundImage?: string;
+  overlayOpacity?: string;
 }
 
 export interface ReseauSocial {
@@ -13,19 +13,20 @@ export interface ReseauSocial {
 
 export interface SiteInfos {
   nom: string;
-  slogan: string;
-  logo: string;
+  slogan?: string;
+  logo?: string;
   descriptionLongue: string;
   emailContact: string;
   telephone: string;
   reseauxSociaux: ReseauSocial[];
-  lienMedia: string;
+  lienMedia?: string;
   presentationTitre: string;
   presentationTexte: string;
-  design: SiteDesign;
+  design?: SiteDesign;
 }
 
 export interface NewsItem {
+  id: string;
   afficherSurAccueil: boolean;
   titre: string;
   description: string;
@@ -54,7 +55,7 @@ export interface EvenementAgenda {
   description: string;
   estPublic: boolean;
   tarif: boolean | string;
-  logoEvenement?: string; // Peut être un Emoji OU une URL d'image
+  logoEvenement?: string; // Emoji OU URL d'image
   boutons: BoutonAgenda[];
 }
 
@@ -65,10 +66,11 @@ export interface MembreTrombi {
   description: string;
   photoUrl: string;
 }
+
 export interface MediaItem {
   id: string;
   titre: string;
   type: 'video' | 'audio' | 'photo';
-  url: string; // Lien YouTube, Soundcloud, Drive, etc.
-  miniature?: string; // Image d'aperçu optionnelle
+  url: string;
+  miniature?: string;
 }
