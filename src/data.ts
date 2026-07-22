@@ -28,7 +28,7 @@ const GIDS = {
 async function fetchSheetData(gid: string): Promise<any[]> {
   try {
     const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&gid=${gid}`;
-    const res = await fetch(url, { next: { revalidate: 60 } }); // Revalidation automatique toutes les 60 secondes sur Vercel
+     const res = await fetch(url, { cache: 'no-store' }); // force la récupération des données en direct à chaque rafraîchissement
     if (!res.ok) return [];
 
     const text = await res.text();
