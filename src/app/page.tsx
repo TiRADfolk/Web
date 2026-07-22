@@ -1,4 +1,5 @@
 // src/app/page.tsx
+
 import Link from 'next/link';
 import { getSiteInfos, getProchainesDates } from '../data';
 import { EvenementAgenda } from '../types';
@@ -7,9 +8,9 @@ export default async function HomePage() {
   const SITE_INFOS = await getSiteInfos();
   const PROCHAINES_DATES = await getProchainesDates();
 
-  // Utilisation sécurisée pour éviter les erreurs de typage TypeScript
+  // Utilisation sécurisée du slogan ou de la description longue
   const descriptionAffichee = 
-    (SITE_INFOS as any).descriptionCourte || 
+    SITE_INFOS.slogan || 
     SITE_INFOS.descriptionLongue || 
     "Bienvenue sur notre site !";
 
