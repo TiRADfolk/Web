@@ -1,3 +1,5 @@
+// src/components/Navbar.tsx
+
 'use client'; 
 
 import React, { useState } from 'react';
@@ -9,6 +11,7 @@ export default function Navbar() {
   const links = [
     { href: '/', label: 'Accueil' },
     { href: '/presentation', label: 'Présentation' },
+    { href: '/activites', label: 'Activités' },
     { href: '/agenda', label: 'Agenda' },
     { href: '/media', label: 'Médias' },
     { href: '/contact', label: 'Contact' },
@@ -21,6 +24,7 @@ export default function Navbar() {
           T-RAD
         </Link>
         
+        {/* Navigation Desktop */}
         <div className="hidden md:flex space-x-6">
           {links.map((link) => (
             <Link key={link.href} href={link.href} className="hover:text-amber-300 transition">
@@ -29,8 +33,12 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Correction ici : class est devenu className */}
-        <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-amber-400 focus:outline-none">
+        {/* Bouton Hamburger Mobile */}
+        <button 
+          onClick={() => setIsOpen(!isOpen)} 
+          className="md:hidden text-amber-400 focus:outline-none"
+          aria-label="Ouvrir le menu"
+        >
           <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             {isOpen ? (
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -41,10 +49,16 @@ export default function Navbar() {
         </button>
       </div>
 
+      {/* Navigation Mobile */}
       {isOpen && (
         <div className="md:hidden bg-amber-950 px-4 pt-2 pb-4 space-y-2">
           {links.map((link) => (
-            <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)} className="block py-2 hover:text-amber-300">
+            <Link 
+              key={link.href} 
+              href={link.href} 
+              onClick={() => setIsOpen(false)} 
+              className="block py-2 hover:text-amber-300"
+            >
               {link.label}
             </Link>
           ))}
