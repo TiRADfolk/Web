@@ -5,6 +5,14 @@ import { EvenementAgenda, Activite, MediaItem, SiteInfos } from './types';
 // Identifiant du Google Sheet (variable Vercel avec fallback)
 const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID || "1zpJNcWwLhaYSJTvQg5lYlpd_TdehGykxjLG85r74oGk";
 
+// --- CONFIGURATION DES GID DES ONGLETS ---
+const GID_INFOS_SITE = "2031827731";
+const GID_NEWS = "1224279643";
+const GID_ACTIVITES = "89403836";
+const GID_AGENDA = "1112528283";
+const GID_TROMBINOSCOPE = "1303650509";
+const GID_MEDIAS = "513021021";
+
 // Helper pour générer l'URL d'export CSV
 const getCsvUrl = (gid: string) =>
   `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=${gid}`;
@@ -53,15 +61,19 @@ function parseCSV(text: string): string[][] {
 }
 
 /* ============================================================================
- * 1. INFOS SITE (Colonnes : Cle | Valeur)
+ * 1. INFOS SITE 
+ * Structure Sheet : [Infos_Site] | Cle (row[1]) | Valeur (row[2])
  * ============================================================================ */
 export async function getSiteInfos(): Promise<SiteInfos> {
-  const rows = await fetchCSV("0"); // GID de l'onglet Infos_Site
+  const rows = await fetchCSV(GID_INFOS_SITE);
   
   const mapData: Record<string, string> = {};
   rows.forEach((row) => {
-    if (row[0] && row[1]) {
-      mapData[row[0].trim().toLowerCase()] = row[1].trim();
+    // row[1] = Cle, row[2] = Valeur (car row[0] est 'Infos_Site')
+    const key = row[1] || row[0];
+    const val = row[2] || row[1];
+    if (key && val) {
+      mapData[key.trim().toLowerCase()] = val.trim();
     }
   });
 
@@ -81,103 +93,103 @@ export async function getSiteInfos(): Promise<SiteInfos> {
 }
 
 /* ============================================================================
- * 2. NEWS (Colonnes : id | afficherSurAccueil | titre | description | image | lien)
+ * 2. NEWS 
+ * Structure Sheet : [News] | id(row[1]) | afficherSurAccueil(row[2]) | titre(row[3]) | description(row[4]) | image(row[5]) | lien(row[6])
  * ============================================================================ */
 export async function getNewsInfo(): Promise<any[]> {
-  // Remplacer par le GID de l'onglet News
-  const rows = await fetchCSV("0"); 
+  const rows = await fetchCSV(GID_NEWS); 
 
   if (rows.length < 2) return [];
 
-  return rows.slice(1).filter(r => r[2]).map((row, index) => ({
-    id: row[0] || `news-${index}`,
-    afficherSurAccueil: row[1]?.toLowerCase() === "true" || row[1]?.toLowerCase() === "oui",
+  return rows.slice(1).filter(r => r[3] || r[2]).map((row, index) => ({
+    id: row[1] || `news-${index}`,
+    afficherSurAccueil: row[2]?.toLowerCase() === "true" || row[2]?.toLowerCase() === "oui",
+    titre: row[3] || "",
+    description: row[4] || "",
+    image: row[5] || "",
+    lien: row[6] || "",
+  }));
+}
+
+/* ============================================================================
+ * 3. ACTIVITÉS 
+ * Structure Sheet : [Activites] | id(row[1]) | titre(row[2]) | description(row[3]) | image(row[4])
+ * ============================================================================ */
+export async function getActivites(): Promise<Activite[]> {
+  const rows = await fetchCSV(GID_ACTIVITES); 
+
+  if (rows.length < 2) return [];
+
+  return rows.slice(1).filter(r => r[2] || r[1]).map((row, index) => ({
+    id: row[1] || `act-${index}`,
     titre: row[2] || "",
     description: row[3] || "",
     image: row[4] || "",
-    lien: row[5] || "",
   }));
 }
 
 /* ============================================================================
- * 3. ACTIVITÉS (Colonnes : id | titre | description | image)
- * ============================================================================ */
-export async function getActivites(): Promise<Activite[]> {
-  // Remplacer par le GID de l'onglet Activites
-  const rows = await fetchCSV("0"); 
-
-  if (rows.length < 2) return [];
-
-  return rows.slice(1).filter(r => r[1]).map((row, index) => ({
-    id: row[0] || `act-${index}`,
-    titre: row[1] || "",
-    description: row[2] || "",
-    image: row[3] || "",
-  }));
-}
-
-/* ============================================================================
- * 4. AGENDA (Colonnes : id | date | title | location | lieuPrecise | description | estPublic | tarif | logoEvenement | lienInfo | lienResa | lienPlan)
+ * 4. AGENDA 
+ * Structure Sheet : [Agenda] | id(1) | date(2) | title(3) | location(4) | lieuPrecise(5) | description(6) | estPublic(7) | tarif(8) | logoEvenement(9) | lienInfo(10) | lienResa(11) | lienPlan(12)
  * ============================================================================ */
 export async function getProchainesDates(): Promise<EvenementAgenda[]> {
-  // Remplacer par le GID de l'onglet Agenda
-  const rows = await fetchCSV("0"); 
+  const rows = await fetchCSV(GID_AGENDA); 
 
   if (rows.length < 2) return [];
 
-  return rows.slice(1).filter(r => r[1] && r[2]).map((row, index) => {
+  return rows.slice(1).filter(r => (r[2] && r[3]) || (r[1] && r[2])).map((row, index) => {
     const boutons = [];
-    if (row[9]) boutons.push({ label: "Infos", url: row[9] });
-    if (row[10]) boutons.push({ label: "Réservation", url: row[10] });
-    if (row[11]) boutons.push({ label: "Plan", url: row[11] });
+    if (row[10]) boutons.push({ label: "Infos", url: row[10] });
+    if (row[11]) boutons.push({ label: "Réservation", url: row[11] });
+    if (row[12]) boutons.push({ label: "Plan", url: row[12] });
 
     return {
-      id: row[0] || `evt-${index}`,
-      date: row[1] || "",
-      title: row[2] || "",
-      location: row[3] || "",
-      lieuPrecise: row[4] || "",
-      description: row[5] || "",
-      estPublic: row[6]?.toLowerCase() === "true" || row[6]?.toLowerCase() === "oui",
-      tarif: row[7] || "",
-      logoEvenement: row[8] || "",
+      id: row[1] || `evt-${index}`,
+      date: row[2] || "",
+      title: row[3] || "",
+      location: row[4] || "",
+      lieuPrecise: row[5] || "",
+      description: row[6] || "",
+      estPublic: row[7]?.toLowerCase() === "true" || row[7]?.toLowerCase() === "oui",
+      tarif: row[8] || "",
+      logoEvenement: row[9] || "",
       boutons: boutons,
     };
   });
 }
 
 /* ============================================================================
- * 5. TROMBINOSCOPE (Colonnes : id | nom | role | description | photoUrl)
+ * 5. TROMBINOSCOPE 
+ * Structure Sheet : [Trombinoscope] | id(row[1]) | nom(row[2]) | role(row[3]) | description(row[4]) | photoUrl(row[5])
  * ============================================================================ */
 export async function getTrombinoscope(): Promise<any[]> {
-  // Remplacer par le GID de l'onglet Trombinoscope
-  const rows = await fetchCSV("0"); 
+  const rows = await fetchCSV(GID_TROMBINOSCOPE); 
 
   if (rows.length < 2) return [];
 
-  return rows.slice(1).filter(r => r[1]).map((row, index) => ({
-    id: row[0] || `membre-${index}`,
-    nom: row[1] || "",
-    role: row[2] || "",
-    description: row[3] || "",
-    photoUrl: row[4] || "",
+  return rows.slice(1).filter(r => r[2] || r[1]).map((row, index) => ({
+    id: row[1] || `membre-${index}`,
+    nom: row[2] || "",
+    role: row[3] || "",
+    description: row[4] || "",
+    photoUrl: row[5] || "",
   }));
 }
 
 /* ============================================================================
- * 6. MEDIAS (Colonnes : id | titre | type | url | miniature)
+ * 6. MEDIAS 
+ * Structure Sheet : [Medias] | id(row[1]) | titre(row[2]) | type(row[3]) | url(row[4]) | miniature(row[5])
  * ============================================================================ */
 export async function getMedias(): Promise<MediaItem[]> {
-  // Remplacer par le GID de l'onglet Medias
-  const rows = await fetchCSV("0"); 
+  const rows = await fetchCSV(GID_MEDIAS); 
 
   if (rows.length < 2) return [];
 
-  return rows.slice(1).filter(r => r[1] && r[3]).map((row, index) => ({
-    id: row[0] || `media-${index}`,
-    titre: row[1] || "",
-    type: (row[2]?.toLowerCase() as 'video' | 'audio' | 'photo') || 'video',
-    url: row[3] || "",
-    miniature: row[4] || "",
+  return rows.slice(1).filter(r => (r[2] && r[4]) || (r[1] && r[3])).map((row, index) => ({
+    id: row[1] || `media-${index}`,
+    titre: row[2] || "",
+    type: (row[3]?.toLowerCase() as 'video' | 'audio' | 'photo') || 'video',
+    url: row[4] || "",
+    miniature: row[5] || "",
   }));
 }
