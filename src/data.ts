@@ -6,203 +6,127 @@ import {
   MediaItem, 
   SiteInfos, 
   NewsItem, 
-  MembreTrombi 
+  MembreTrombinoscope 
 } from './types';
 
-// Identifiant du Google Sheet (variable Vercel avec fallback)
-const GOOGLE_SHEET_ID = process.env.GOOGLE_SHEET_ID || "1zpJNcWwLhaYSJTvQg5lYlpd_TdehGykxjLG85r74oGk";
+// ID de votre Google Sheet
+const SPREADSHEET_ID = process.env.GOOGLE_SHEET_ID || "1zpJNcWwLhaYSJTvQg5lYlpd_TdehGykxjLG85r74oGk";
 
-// --- CONFIGURATION DES GID DES ONGLETS ---
-const GID_INFOS_SITE = "2031827731";
-const GID_NEWS = "1224279643";
-const GID_ACTIVITES = "89403836";
-const GID_AGENDA = "1112528283";
-const GID_TROMBINOSCOPE = "1303650509";
-const GID_MEDIAS = "513021021";
+// GIDs correspondant à vos différents onglets sur Google Drive
+const GIDS = {
+  INFOS_SITE: "2031827731",
+  NEWS: "1224279643",
+  ACTIVITES: "89403836",
+  AGENDA: "1112528283",
+  TROMBINOSCOPE: "1303650509",
+  MEDIAS: "513021021",
+};
 
-// Helper pour générer l'URL d'export CSV
-const getCsvUrl = (gid: string) =>
-  `https://docs.google.com/spreadsheets/d/${GOOGLE_SHEET_ID}/export?format=csv&gid=${gid}`;
-
-// Lecture du CSV sans cache (fetch dynamique)
-async function fetchCSV(gid: string): Promise<string[][]> {
+/**
+ * Récupère dynamiquement les données d'un onglet Google Sheets via l'API publique de requête
+ */
+async function fetchSheetData(gid: string): Promise<any[]> {
   try {
-    const url = getCsvUrl(gid);
-    const res = await fetch(url, { cache: 'no-store' });
-    
-    if (!res.ok) {
-      console.error(`Erreur lors de la récupération du GID ${gid}: status ${res.status}`);
-      return [];
-    }
+    const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:json&gid=${gid}`;
+    const res = await fetch(url, { next: { revalidate: 60 } }); // Revalidation automatique toutes les 60 secondes sur Vercel
+    if (!res.ok) return [];
 
     const text = await res.text();
-    return parseCSV(text);
-  } catch (error) {
-    console.error(`Erreur réseau (GID ${gid}):`, error);
+    const jsonString = text.substring(47, text.length - 2);
+    const data = JSON.parse(jsonString);
+
+    const cols = data.table.cols.map((c: any) => c ? c.label : '');
+    const rows = data.table.rows || [];
+
+    return rows.map((row: any) => {
+      const rowData: Record<string, any> = {};
+      row.c.forEach((cell: any, i: number) => {
+        const colName = cols[i];
+        if (colName) {
+          rowData[colName] = cell ? (cell.v ?? '') : '';
+        }
+      });
+      return rowData;
+    });
+  } catch (err) {
+    console.error(`Erreur lors du chargement des données (GID ${gid}):`, err);
     return [];
   }
 }
 
-// Parser CSV pour gérer les guillemets et virgules
-function parseCSV(text: string): string[][] {
-  const lines = text.split(/\r?\n/);
-  return lines.map((line) => {
-    const result: string[] = [];
-    let cur = '';
-    let inQuotes = false;
-
-    for (let i = 0; i < line.length; i++) {
-      const char = line[i];
-      if (char === '"') {
-        inQuotes = !inQuotes;
-      } else if (char === ',' && !inQuotes) {
-        result.push(cur.trim());
-        cur = '';
-      } else {
-        cur += char;
-      }
-    }
-    result.push(cur.trim());
-    return result;
-  });
-}
-
-/* ============================================================================
- * 1. INFOS SITE 
- * Structure Sheet : [Infos_Site] | Cle (row[1]) | Valeur (row[2])
- * ============================================================================ */
 export async function getSiteInfos(): Promise<SiteInfos> {
-  const rows = await fetchCSV(GID_INFOS_SITE);
-  
-  const mapData: Record<string, string> = {};
-  rows.forEach((row) => {
-    const key = row[1] || row[0];
-    const val = row[2] || row[1];
-    if (key && val) {
-      mapData[key.trim().toLowerCase()] = val.trim();
-    }
-  });
-
+  const rows = await fetchSheetData(GIDS.INFOS_SITE);
+  const infos = rows[0] || {};
   return {
-    nom: mapData['nom'] || "T-RAD",
-    slogan: mapData['slogan'] || "",
-    logo: mapData['logo'] || "",
-    descriptionLongue: mapData['descriptionlongue'] || mapData['description'] || "Groupe de musique trad & bal folk.",
-    presentationTitre: mapData['presentationtitre'] || "Qui sommes-nous ?",
-    presentationTexte: mapData['presentationtexte'] || "",
-    emailContact: mapData['emailcontact'] || "contact@trad.fr",
-    telephone: mapData['telephone'] || "",
-    lienMedia: mapData['lienmedia'] || "",
-    reseauxSociaux: [
-      { nom: 'Facebook', url: mapData['facebook'] || '', icone: '🌐' },
-      { nom: 'Instagram', url: mapData['instagram'] || '', icone: '📷' },
-      { nom: 'YouTube', url: mapData['youtube'] || '', icone: '▶️' },
-    ].filter((res) => res.url && res.url !== ''),
-    design: {
-      heroBackgroundImage: mapData['herobackgroundimage'] || "",
-      overlayOpacity: mapData['overlayopacity'] || "bg-black/60",
-    }
+    nom: infos.nom || "T-RAD",
+    slogan: infos.slogan || "Musique traditionnelle vivante & bals folks endiablés",
+    descriptionLongue: infos.descriptionLongue || "Bienvenue sur le site officiel du groupe T-RAD.",
+    emailContact: infos.emailContact || "contact@t-rad.fr",
+    telephone: infos.telephone || "06 00 00 00 00",
+    presentationTitre: infos.presentationTitre || "Qui sommes-nous ?",
+    presentationTexte: infos.presentationTexte || "T-RAD est un groupe de musique traditionnelle...",
   };
 }
 
-/* ============================================================================
- * 2. NEWS 
- * Structure Sheet : [News] | id(row[1]) | afficherSurAccueil(row[2]) | titre(row[3]) | description(row[4]) | image(row[5]) | lien(row[6])
- * ============================================================================ */
-export async function getNewsInfo(): Promise<NewsItem[]> {
-  const rows = await fetchCSV(GID_NEWS); 
-
-  if (rows.length < 2) return [];
-
-  return rows.slice(1).filter(r => r[3] || r[2]).map((row, index) => ({
-    id: row[1] || `news-${index}`,
-    afficherSurAccueil: row[2]?.toLowerCase() === "true" || row[2]?.toLowerCase() === "oui",
-    titre: row[3] || "",
-    description: row[4] || "",
-    image: row[5] || "",
-    lien: row[6] || "",
-  }));
-}
-
-/* ============================================================================
- * 3. ACTIVITÉS 
- * Structure Sheet : [Activites] | id(row[1]) | titre(row[2]) | description(row[3]) | image(row[4])
- * ============================================================================ */
-export async function getActivites(): Promise<Activite[]> {
-  const rows = await fetchCSV(GID_ACTIVITES); 
-
-  if (rows.length < 2) return [];
-
-  return rows.slice(1).filter(r => r[2] || r[1]).map((row, index) => ({
-    id: row[1] || `act-${index}`,
-    titre: row[2] || "",
-    description: row[3] || "",
-    image: row[4] || "",
-  }));
-}
-
-/* ============================================================================
- * 4. AGENDA 
- * Structure Sheet : [Agenda] | id(1) | date(2) | title(3) | location(4) | lieuPrecise(5) | description(6) | estPublic(7) | tarif(8) | logoEvenement(9) | lienInfo(10) | lienResa(11) | lienPlan(12)
- * ============================================================================ */
 export async function getProchainesDates(): Promise<EvenementAgenda[]> {
-  const rows = await fetchCSV(GID_AGENDA); 
-
-  if (rows.length < 2) return [];
-
-  return rows.slice(1).filter(r => (r[2] && r[3]) || (r[1] && r[2])).map((row, index) => {
-    const boutons = [];
-    if (row[10]) boutons.push({ label: "Infos", url: row[10] });
-    if (row[11]) boutons.push({ label: "Réservation", url: row[11] });
-    if (row[12]) boutons.push({ label: "Plan", url: row[12] });
-
-    return {
-      id: row[1] || `evt-${index}`,
-      date: row[2] || "",
-      title: row[3] || "",
-      location: row[4] || "",
-      lieuPrecise: row[5] || "",
-      description: row[6] || "",
-      estPublic: row[7]?.toLowerCase() === "true" || row[7]?.toLowerCase() === "oui",
-      tarif: row[8] || "",
-      logoEvenement: row[9] || "",
-      boutons: boutons,
-    };
-  });
-}
-
-/* ============================================================================
- * 5. TROMBINOSCOPE 
- * Structure Sheet : [Trombinoscope] | id(row[1]) | nom(row[2]) | role(row[3]) | description(row[4]) | photoUrl(row[5])
- * ============================================================================ */
-export async function getTrombinoscope(): Promise<MembreTrombi[]> {
-  const rows = await fetchCSV(GID_TROMBINOSCOPE); 
-
-  if (rows.length < 2) return [];
-
-  return rows.slice(1).filter(r => r[2] || r[1]).map((row, index) => ({
-    id: row[1] || `membre-${index}`,
-    nom: row[2] || "",
-    role: row[3] || "",
-    description: row[4] || "",
-    photoUrl: row[5] || "",
+  const rows = await fetchSheetData(GIDS.AGENDA);
+  return rows.map((r, index) => ({
+    id: String(r.id || index),
+    title: String(r.title || r.titre || ''),
+    date: String(r.date || ''),
+    location: String(r.location || ''),
+    lieuPrecise: String(r.lieuPrecise || ''),
+    description: String(r.description || ''),
+    estPublic: String(r.estPublic).toLowerCase() !== 'false' && String(r.estPublic) !== '0',
+    tarif: r.tarif,
+    logoEvenement: String(r.logoEvenement || ''),
+    boutons: [
+      r.lienInfo ? { label: 'Plus d’infos', url: r.lienInfo } : null,
+      r.lienResa ? { label: 'Réservation', url: r.lienResa } : null,
+      r.lienPlan ? { label: 'Plan', url: r.lienPlan } : null,
+    ].filter(Boolean) as Array<{ label: string; url: string }>,
   }));
 }
 
-/* ============================================================================
- * 6. MEDIAS 
- * Structure Sheet : [Medias] | id(row[1]) | titre(row[2]) | type(row[3]) | url(row[4]) | miniature(row[5])
- * ============================================================================ */
+export async function getActivites(): Promise<Activite[]> {
+  const rows = await fetchSheetData(GIDS.ACTIVITES);
+  return rows.map((r, i) => ({
+    id: String(i),
+    titre: String(r.titre || ''),
+    description: String(r.description || ''),
+    image: String(r.image || ''),
+  }));
+}
+
 export async function getMedias(): Promise<MediaItem[]> {
-  const rows = await fetchCSV(GID_MEDIAS); 
+  const rows = await fetchSheetData(GIDS.MEDIAS);
+  return rows.map((r, i) => ({
+    id: String(i),
+    titre: String(r.titre || ''),
+    type: r.type as 'video' | 'audio' | 'photo',
+    url: String(r.url || ''),
+    miniature: String(r.miniature || ''),
+  }));
+}
 
-  if (rows.length < 2) return [];
+export async function getTrombinoscope(): Promise<MembreTrombinoscope[]> {
+  const rows = await fetchSheetData(GIDS.TROMBINOSCOPE);
+  return rows.map((r, i) => ({
+    id: String(i),
+    nom: String(r.nom || ''),
+    role: String(r.role || ''),
+    description: String(r.description || ''),
+    photoUrl: String(r.photoUrl || ''),
+  }));
+}
 
-  return rows.slice(1).filter(r => (r[2] && r[4]) || (r[1] && r[3])).map((row, index) => ({
-    id: row[1] || `media-${index}`,
-    titre: row[2] || "",
-    type: (row[3]?.toLowerCase() as 'video' | 'audio' | 'photo') || 'video',
-    url: row[4] || "",
-    miniature: row[5] || "",
+export async function getNews(): Promise<NewsItem[]> {
+  const rows = await fetchSheetData(GIDS.NEWS);
+  return rows.map((r, i) => ({
+    id: String(i),
+    titre: String(r.titre || ''),
+    description: String(r.description || ''),
+    image: String(r.image || ''),
+    lien: String(r.lien || ''),
   }));
 }
