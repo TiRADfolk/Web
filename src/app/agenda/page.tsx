@@ -5,7 +5,6 @@ import { getProchainesDates } from "../../data";
 import { EvenementAgenda } from "../../types";
 
 export default async function AgendaPage() {
-  // Récupération dynamique des dates depuis Google Sheets
   const PROCHAINES_DATES = await getProchainesDates();
 
   // Acceptation explicite de undefined
@@ -16,8 +15,8 @@ export default async function AgendaPage() {
     return `🎟️ ${tarif}`;
   };
 
-  // Fonction sécurisée pour détecter si le logo est une URL ou un Emoji
-  const isImageUrl = (url: string) => {
+  // Fonction sécurisée acceptant undefined
+  const isImageUrl = (url?: string) => {
     const safeUrl = String(url || "").trim();
     return safeUrl.startsWith("http://") || safeUrl.startsWith("https://") || safeUrl.startsWith("/");
   };
@@ -58,7 +57,7 @@ export default async function AgendaPage() {
                   key={evt.id}
                   className="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 flex gap-4 items-start"
                 >
-                  {/* Gestion du logo : Image ou Emoji */}
+                  {/* Logo : Image ou Emoji */}
                   {evt.logoEvenement && (
                     <div className="w-16 h-16 flex-shrink-0 flex items-center justify-center bg-stone-50 rounded-xl overflow-hidden select-none">
                       {isImageUrl(evt.logoEvenement) ? (
@@ -76,9 +75,7 @@ export default async function AgendaPage() {
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-2 text-xs font-bold text-amber-600 uppercase mb-1">
                       <span>{evt.date}</span>
-
                       <span>•</span>
-
                       <span>{evt.estPublic ? "Public" : "Privé"}</span>
 
                       {badgeTarif && (
@@ -95,7 +92,6 @@ export default async function AgendaPage() {
                       {evt.title}
                     </h2>
 
-                    {/* Affichage combiné de lieuPrecise et location */}
                     {((evt.location && evt.location.trim() !== "") || (evt.lieuPrecise && evt.lieuPrecise.trim() !== "")) && (
                       <p className="text-stone-500 text-sm mb-2 flex flex-wrap gap-1 items-center">
                         <span>📍</span>
