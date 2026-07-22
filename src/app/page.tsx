@@ -16,6 +16,9 @@ export default async function HomePage() {
       <nav className="max-w-4xl mx-auto my-12 grid grid-cols-2 md:grid-cols-4 gap-4 px-6 text-center">
         <Link href="/agenda" className="p-4 bg-white rounded-xl shadow-sm border hover:border-amber-500 font-bold">📅 Agenda</Link>
         <Link href="/presentation" className="p-4 bg-white rounded-xl shadow-sm border hover:border-amber-500 font-bold">📜 Présentation</Link>
+        <Link href="/activites" className="p-4 bg-white rounded-xl shadow-sm border hover:border-amber-500 font-bold">
+  🎨 Activités
+</Link>
         <Link href="/media" className="p-4 bg-white rounded-xl shadow-sm border hover:border-amber-500 font-bold">🎶 Médias</Link>
         <Link href="/contact" className="p-4 bg-white rounded-xl shadow-sm border hover:border-amber-500 font-bold">✉️ Contact</Link>
       </nav>
