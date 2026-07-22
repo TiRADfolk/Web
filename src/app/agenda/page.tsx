@@ -8,7 +8,8 @@ export default async function AgendaPage() {
   // Récupération dynamique des dates depuis Google Sheets
   const PROCHAINES_DATES = await getProchainesDates();
 
-  const renderBadgeTarif = (tarif: boolean | string) => {
+  // Acceptation explicite de undefined
+  const renderBadgeTarif = (tarif?: boolean | string) => {
     if (tarif === "non" || tarif === false) return "🎁 Gratuit";
     if (tarif === "oui" || tarif === true) return "🎟️ Payant";
     if (!tarif || String(tarif).trim() === "") return "";
