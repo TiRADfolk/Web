@@ -1,13 +1,9 @@
-// src/app/layout.tsx
-
+import React from 'react';
 import './globals.css';
-import type { Metadata } from 'next';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
 
-export const metadata: Metadata = {
-  title: 'T-RAD | Bal folk',
-  description: 'Musique et bals folks.',
+export const metadata = {
+  title: 'T-RAD | Groupe Trad & Bal Folk',
+  description: 'Musique traditionnelle vivante et bals folks',
 };
 
 export default function RootLayout({
@@ -17,10 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
-        <Navbar />
-        <main className="flex-grow">{children}</main>
-        <Footer />
+      <body className="bg-stone-50 text-stone-900 antialiased">
+        {children}
       </body>
     </html>
   );
